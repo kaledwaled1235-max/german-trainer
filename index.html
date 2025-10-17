@@ -1,0 +1,306 @@
+<!--
+GermanTrainer.html
+A single-file HTML app to add German-English word pairs and practice with multiple-choice quizzes.
+Theme: blue & black
+How to use:
+- Open this file in any modern browser (double-click or drag into browser).
+- Add German and English words on the left, click Add.
+- Save / Load JSON or Export CSV.
+- Click Start Quiz to practice (shows English, pick correct German).
+- Uses localStorage to remember your words between sessions.
+- Includes German pronunciation via Web Speech API (if browser supports it).
+-->
+
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>German Trainer</title>
+  <style>
+    :root{
+      --black:#0b0b0f;
+      --blue:#0b7bff;
+      --dark-blue:#06223a;
+      --muted:#9aa7bf;
+      --card:#0f1720;
+    }
+    *{box-sizing:border-box;font-family: 'Segoe UI', Tahoma, Arial, sans-serif}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--black),var(--dark-blue));color:var(--muted)}
+    .app{max-width:1100px;margin:24px auto;padding:18px;display:grid;grid-template-columns:1fr 420px;gap:18px}
+
+    /* Left panel */
+    .panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(2,6,23,0.6);border:1px solid rgba(11,123,255,0.08)}
+    h1{color:#e6f0ff;margin:4px 0 12px;font-size:20px}
+    label{display:block;margin:8px 0 6px;color:var(--muted);font-size:14px}
+    input[type=text]{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#e6f0ff}
+    .row{display:flex;gap:8px}
+    button{background:var(--blue);color:white;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+    button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+
+    .list{height:360px;overflow:auto;margin-top:12px;padding:8px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(11,123,255,0.04)}
+    .item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:6px;margin-bottom:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00))}
+    .word{font-size:15px;color:#eaf4ff}
+    .meta{font-size:12px;color:var(--muted)}
+
+    /* Right panel */
+    .quiz-hero{text-align:center}
+    .prompt{background:linear-gradient(90deg, rgba(11,123,255,0.12), rgba(6,34,58,0.12));padding:14px;border-radius:10px;margin-bottom:12px;color:#eaf4ff;font-size:18px}
+    .opts{display:flex;flex-direction:column;gap:10px}
+    .opt{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));cursor:pointer;text-align:left}
+    .opt.correct{outline:2px solid #19b56b}
+    .opt.wrong{outline:2px solid #ff4d4d}
+
+    .controls{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+    .small{font-size:13px;padding:6px 10px}
+
+    .score{margin-top:10px;color:var(--muted)}
+
+    footer{grid-column:1 / -1;text-align:center;margin-top:8px;color:rgba(255,255,255,0.18);font-size:13px}
+
+    /* responsive */
+    @media(max-width:880px){.app{grid-template-columns:1fr;}.list{height:220px}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="panel" id="editor">
+      <h1>German Trainer — محرّك الكلمات</h1>
+      <label>German</label>
+      <input id="german" type="text" placeholder="e.g. Apfel" />
+      <label>English</label>
+      <input id="english" type="text" placeholder="e.g. Apple" />
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button id="add">Add</button>
+        <button id="pron" class="ghost">Pronounce</button>
+        <button id="remove" class="ghost">Remove Selected</button>
+        <button id="clear" class="ghost">Clear All</button>
+      </div>
+
+      <div style="display:flex;gap:6px;margin-top:10px;align-items:center">
+        <button id="load" class="ghost small">Load JSON</button>
+        <button id="save" class="ghost small">Save JSON</button>
+        <button id="csv" class="ghost small">Export CSV</button>
+        <select id="optionsCount" class="small" style="margin-left:auto">
+          <option value="2">2 opts</option>
+          <option value="3">3 opts</option>
+          <option value="4" selected>4 opts</option>
+          <option value="5">5 opts</option>
+          <option value="6">6 opts</option>
+        </select>
+      </div>
+
+      <div class="list" id="wordList" aria-live="polite"></div>
+    </div>
+
+    <div class="panel" id="quiz">
+      <div class="quiz-hero">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h1 style="font-size:18px;margin:0;color:#e6f0ff">Quiz</h1>
+          <div style="color:var(--muted);font-size:14px">Score: <span id="score">0 / 0</span></div>
+        </div>
+
+        <div style="margin-top:10px" class="controls">
+          <button id="start">Start Quiz</button>
+          <button id="next" class="ghost">Skip</button>
+          <button id="shuffle" class="ghost">Shuffle</button>
+          <label style="margin-left:auto;color:var(--muted);font-size:13px">Pronunciation:</label>
+          <input type="checkbox" id="usePron" checked />
+        </div>
+
+        <div class="prompt" id="prompt">اضغط Start Quiz لبدء التمرين</div>
+        <div class="opts" id="opts"></div>
+        <div class="score" id="finalMsg"></div>
+      </div>
+    </div>
+
+    <footer>ملف HTML — افتحه في المتصفح. يدعم الحفظ في المتصفح والتحميل كـ JSON/CSV.</footer>
+  </div>
+
+  <input id="fileInput" type="file" accept="application/json" style="display:none" />
+
+  <script>
+    // Data & storage
+    const WORDS_KEY = 'german_trainer_words_v1';
+    let words = JSON.parse(localStorage.getItem(WORDS_KEY) || '[]');
+    let quizQueue = [];
+    let current = null;
+    let correct = 0, attempts = 0;
+
+    // UI refs
+    const germanInput = document.getElementById('german');
+    const englishInput = document.getElementById('english');
+    const addBtn = document.getElementById('add');
+    const pronBtn = document.getElementById('pron');
+    const listEl = document.getElementById('wordList');
+    const saveBtn = document.getElementById('save');
+    const loadBtn = document.getElementById('load');
+    const csvBtn = document.getElementById('csv');
+    const removeBtn = document.getElementById('remove');
+    const clearBtn = document.getElementById('clear');
+    const startBtn = document.getElementById('start');
+    const nextBtn = document.getElementById('next');
+    const shuffleBtn = document.getElementById('shuffle');
+    const optsCount = document.getElementById('optionsCount');
+    const optsEl = document.getElementById('opts');
+    const promptEl = document.getElementById('prompt');
+    const scoreEl = document.getElementById('score');
+    const finalMsg = document.getElementById('finalMsg');
+    const usePron = document.getElementById('usePron');
+    const fileInput = document.getElementById('fileInput');
+
+    // Helpers
+    function persist(){ localStorage.setItem(WORDS_KEY, JSON.stringify(words)); }
+    function renderList(){
+      listEl.innerHTML='';
+      words.forEach((w,i)=>{
+        const it = document.createElement('div'); it.className='item';
+        const left = document.createElement('div');
+        left.innerHTML = `<div class="word">${escapeHtml(w.german)}</div><div class="meta">${escapeHtml(w.english)}</div>`;
+        const right = document.createElement('div');
+        right.style.display='flex'; right.style.gap='6px';
+        const bplay = document.createElement('button'); bplay.className='ghost small'; bplay.textContent='🔊';
+        bplay.onclick = ()=>pronounce(w.german);
+        const bsel = document.createElement('button'); bsel.className='ghost small'; bsel.textContent='Select';
+        bsel.onclick = ()=>{ germanInput.value=w.german; englishInput.value=w.english; }
+        const bdel = document.createElement('button'); bdel.className='ghost small'; bdel.textContent='Del';
+        bdel.onclick = ()=>{ if(confirm('Delete this word?')){ words.splice(i,1); persist(); renderList(); } }
+        right.appendChild(bplay); right.appendChild(bsel); right.appendChild(bdel);
+        it.appendChild(left); it.appendChild(right);
+        listEl.appendChild(it);
+      });
+    }
+
+    function escapeHtml(s){ return (s+'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[c]); }
+
+    // Add
+    addBtn.addEventListener('click', ()=>{
+      const g = germanInput.value.trim();
+      const e = englishInput.value.trim();
+      if(!g || !e){ alert('Both fields required'); return; }
+      words.push({german:g, english:e}); persist(); renderList(); germanInput.value=''; englishInput.value='';
+    });
+
+    pronBtn.addEventListener('click', ()=>{ pronounce(germanInput.value.trim()); });
+
+    removeBtn.addEventListener('click', ()=>{
+      const g = germanInput.value.trim();
+      const idx = words.findIndex(w=>w.german===g && w.english===englishInput.value.trim());
+      if(idx===-1){ alert('No matching selected word'); return; }
+      if(confirm('Delete selected?')){ words.splice(idx,1); persist(); renderList(); }
+    });
+
+    clearBtn.addEventListener('click', ()=>{
+      if(confirm('Clear all words?')){ words=[]; persist(); renderList(); }
+    });
+
+    // save/load
+    saveBtn.addEventListener('click', ()=>{
+      const data = JSON.stringify(words, null, 2);
+      const blob = new Blob([data], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download='german_words.json'; a.click(); URL.revokeObjectURL(url);
+    });
+
+    loadBtn.addEventListener('click', ()=> fileInput.click());
+    fileInput.addEventListener('change', ()=>{
+      const f = fileInput.files[0]; if(!f) return;
+      const reader = new FileReader();
+      reader.onload = ()=>{
+        try{ const data = JSON.parse(reader.result); if(Array.isArray(data)){ words = data.filter(item=>item.german && item.english); persist(); renderList(); alert('Loaded ' + words.length + ' words'); } else alert('JSON must be an array'); }catch(e){ alert('Invalid JSON') }
+      };
+      reader.readAsText(f);
+    });
+
+    csvBtn.addEventListener('click', ()=>{
+      let out = 'german,english\n';
+      words.forEach(w=>{ out += `"${w.german.replace(/"/g,'""')}","${w.english.replace(/"/g,'""')}"\n`; });
+      const blob = new Blob([out], {type:'text/csv'});
+      const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href=url; a.download='german_words.csv'; a.click(); URL.revokeObjectURL(url);
+    });
+
+    // Quiz - MODIFIED: Only use last 30 words for quiz
+    startBtn.addEventListener('click', ()=>{
+      if(words.length < 2){ alert('Add at least 2 words to start'); return; }
+      correct = 0; attempts = 0; 
+      // Use only the last 30 words for the quiz
+      const quizWords = words.slice(-30);
+      quizQueue = shuffle([...quizWords]); 
+      finalMsg.textContent=''; 
+      nextQuestion(); 
+      updateScore();
+    });
+    nextBtn.addEventListener('click', ()=>{ nextQuestion(); });
+    shuffleBtn.addEventListener('click', ()=>{ words = shuffle(words); persist(); renderList(); });
+
+    function nextQuestion(){
+      if(quizQueue.length === 0){ 
+        promptEl.textContent='انتهت الأسئلة'; 
+        finalMsg.textContent=`Final score: ${correct} / ${attempts}`; 
+        optsEl.innerHTML=''; 
+        return; 
+      }
+      current = quizQueue.pop();
+      promptEl.textContent = `What is the German for:\n\n${current.english}`;
+      const numOpts = Math.max(2, Math.min(6, parseInt(optsCount.value||4)));
+      
+      // MODIFIED: Build choices from last 30 words only
+      const quizWords = words.slice(-30);
+      const choices = buildChoices(current.german, numOpts, quizWords);
+      renderOptions(choices);
+      if(usePron.checked) pronounce(current.german);
+    }
+
+    // MODIFIED: Accept word pool as parameter
+    function buildChoices(correctGerman, num, wordPool){
+      const pool = wordPool.map(w=>w.german).filter(g=>g!==correctGerman);
+      const choices = [correctGerman];
+      while(choices.length < num && pool.length){
+        const i = Math.floor(Math.random()*pool.length); choices.push(pool.splice(i,1)[0]);
+      }
+      while(choices.length < num) choices.push(correctGerman);
+      return shuffle(choices);
+    }
+
+    function renderOptions(choices){
+      optsEl.innerHTML='';
+      choices.forEach(c=>{
+        const b = document.createElement('div'); b.className='opt'; b.textContent = c; b.onclick = ()=>answer(c,b); optsEl.appendChild(b);
+      });
+    }
+
+    function answer(choice, el){
+      attempts++; 
+      if(choice === current.german){
+        correct++; 
+        el.classList.add('correct'); 
+        setTimeout(()=>{ nextQuestion(); }, 600); 
+      } else { 
+        el.classList.add('wrong'); 
+        // reveal correct
+        Array.from(document.querySelectorAll('.opt')).forEach(o=>{ 
+          if(o.textContent === current.german) o.classList.add('correct'); 
+        }); 
+        setTimeout(()=>{ nextQuestion(); }, 900);
+      } 
+      updateScore();
+    }
+
+    function updateScore(){ scoreEl.textContent = `${correct} / ${attempts}`; }
+
+    // Utils
+    function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]] } return arr; }
+
+    // Pronunciation
+    function pronounce(text){ if(!text) return; if('speechSynthesis' in window){ const ut = new SpeechSynthesisUtterance(text); // try German
+      ut.lang = 'de-DE'; window.speechSynthesis.cancel(); window.speechSynthesis.speak(ut);
+    } else alert('Speech not supported in this browser'); }
+
+    // init
+    renderList();
+
+    // expose save on ctrl+s
+    window.addEventListener('keydown', (e)=>{ if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='s'){ e.preventDefault(); saveBtn.click(); } });
+  </script>
+</body>
+</html>
