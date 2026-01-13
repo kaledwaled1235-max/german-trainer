@@ -193,7 +193,7 @@
     
     .memory-controls{display:flex;gap:8px;justify-content:center;margin-top:20px}
     
-    /* Mistake Review page */
+    /* Mistake Review page - UPDATED FOR ACTIVE REVIEW */
     .mistakes-container{max-width:800px;margin:0 auto}
     .mistakes-header{text-align:center;margin-bottom:25px}
     
@@ -206,6 +206,118 @@
     
     .empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
     .empty-state-icon{font-size:60px;margin-bottom:20px}
+    
+    /* Active mistake review exercise */
+    .mistake-review-exercise{
+      background:linear-gradient(180deg, rgba(255,11,11,0.1), rgba(58,6,6,0.1));
+      border-radius:12px;
+      padding:25px;
+      margin:20px 0;
+      border:2px solid rgba(255,11,11,0.2);
+      display:none;
+    }
+    
+    .mistake-review-exercise.active{
+      display:block;
+      animation:fadeIn 0.5s;
+    }
+    
+    .mistake-review-question{
+      font-size:22px;
+      color:#ffcccc;
+      text-align:center;
+      margin-bottom:20px;
+      padding:15px;
+      background:rgba(0,0,0,0.2);
+      border-radius:10px;
+    }
+    
+    .mistake-review-options{
+      display:grid;
+      gap:12px;
+      margin:20px 0;
+    }
+    
+    .mistake-review-option{
+      padding:16px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:rgba(0,0,0,0.3);
+      cursor:pointer;
+      text-align:center;
+      font-size:16px;
+      color:#ffebeb;
+      transition:all 0.2s;
+    }
+    
+    .mistake-review-option:hover{
+      background:rgba(255,11,11,0.1);
+      border-color:var(--red-light);
+    }
+    
+    .mistake-review-option.correct{
+      background:rgba(25,181,107,0.2);
+      border-color:var(--green);
+      color:#d1ffe9;
+    }
+    
+    .mistake-review-option.wrong{
+      background:rgba(255,77,77,0.2);
+      border-color:#ff4d4d;
+      color:#ffd1d1;
+    }
+    
+    .mistake-review-input-container{
+      margin:20px 0;
+    }
+    
+    .mistake-review-input{
+      width:100%;
+      padding:15px;
+      font-size:18px;
+      text-align:center;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:rgba(0,0,0,0.3);
+      color:#ffebeb;
+    }
+    
+    .mistake-review-feedback{
+      min-height:60px;
+      margin:20px 0;
+      padding:15px;
+      border-radius:10px;
+      transition:all 0.3s;
+      text-align:center;
+    }
+    
+    .mistake-review-feedback.correct{
+      background:rgba(25,181,107,0.15);
+      border:1px solid var(--green);
+      color:#d1ffe9;
+    }
+    
+    .mistake-review-feedback.incorrect{
+      background:rgba(255,77,77,0.15);
+      border:1px solid #ff4d4d;
+      color:#ffd1d1;
+    }
+    
+    .mistake-review-progress{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:15px;
+      padding:12px;
+      background:rgba(255,11,11,0.08);
+      border-radius:10px;
+    }
+    
+    .mistake-review-next{
+      text-align:center;
+      margin-top:20px;
+      display:none;
+    }
     
     /* Mistakes review */
     .mistakes-section{margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,11,11,0.2)}
@@ -491,7 +603,7 @@
       </div>
     </div>
 
-    <!-- Mistake Review Page -->
+    <!-- Mistake Review Page - UPDATED FOR ACTIVE REVIEW -->
     <div class="page" id="mistakes-page">
       <div class="mistakes-container">
         <h1>📊 مراجعة الأخطاء</h1>
@@ -511,6 +623,44 @@
           </div>
         </div>
         
+        <!-- Active Review Exercise Container -->
+        <div class="mistake-review-exercise" id="mistake-review-exercise">
+          <div class="mistake-review-question" id="mistake-review-question"></div>
+          
+          <!-- For quiz-type mistakes -->
+          <div class="mistake-review-options" id="mistake-review-options"></div>
+          
+          <!-- For writing-type mistakes -->
+          <div class="mistake-review-input-container" id="mistake-review-input-container" style="display:none">
+            <input type="text" class="mistake-review-input" id="mistake-review-input" placeholder="...اكتب إجابتك" />
+            <div style="text-align:center;margin-top:15px">
+              <button id="check-mistake-answer" class="ghost">✓ تحقق</button>
+            </div>
+          </div>
+          
+          <div class="mistake-review-feedback" id="mistake-review-feedback"></div>
+          
+          <div class="mistake-review-progress">
+            <div>
+              <div style="font-size:12px;color:var(--muted)">التقدم</div>
+              <div style="font-size:16px;color:#ffcccc">
+                <span id="current-mistake-progress">0</span>/<span id="total-mistakes-to-review">0</span>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:12px;color:var(--muted)">التكرار المطلوب</div>
+              <div style="font-size:16px;color:#ffcccc">
+                <span id="current-corrected-count">0</span>/<span id="needs-correct-count">2</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mistake-review-next" id="mistake-review-next">
+            <button id="next-mistake" class="ghost">⏭️ التالي</button>
+          </div>
+        </div>
+        
+        <!-- Mistakes List Container -->
         <div id="mistakes-list-container">
           <!-- Mistakes will be dynamically inserted here -->
         </div>
@@ -523,9 +673,10 @@
         </div>
         
         <div class="mistake-review-controls">
-          <button id="start-mistakes-review" class="ghost" style="display:none">▶️ بدء المراجعة</button>
+          <button id="start-mistakes-review" class="ghost">▶️ بدء المراجعة</button>
           <button id="clear-corrected-mistakes" class="ghost">🗑️ مسح الأخطاء المصححة</button>
           <button id="clear-all-mistakes" class="ghost" style="background:rgba(255,77,77,0.2);color:#ff9999">🗑️ مسح جميع الأخطاء</button>
+          <button id="stop-mistakes-review" class="ghost" style="display:none">⏹️ إيقاف المراجعة</button>
         </div>
       </div>
     </div>
@@ -625,7 +776,6 @@
     let memoryCards = [];
     let currentQuizWord = null;
     let currentWritingWord = null;
-    let currentMistakeReview = null;
     let quizCorrect = 0, quizAttempts = 0;
     let writingCorrect = 0, writingAttempts = 0;
     let quizMistakes = [];
@@ -639,6 +789,12 @@
     let memoryTimer = null;
     let flippedCards = [];
     let canFlip = true;
+    
+    // Mistakes review variables
+    let currentMistakeReview = null;
+    let mistakesReviewQueue = [];
+    let mistakesReviewActive = false;
+    let currentMistakeIndex = 0;
 
     // UI refs
     const germanInput = document.getElementById('german');
@@ -701,7 +857,7 @@
     const finalMovesEl = document.getElementById('final-moves');
     const finalTimeEl = document.getElementById('final-time');
     
-    // Mistakes review elements
+    // Mistakes review elements - UPDATED
     const mistakesListContainer = document.getElementById('mistakes-list-container');
     const noMistakesEl = document.getElementById('no-mistakes');
     const totalMistakesEl = document.getElementById('total-mistakes');
@@ -710,6 +866,22 @@
     const startMistakesReviewBtn = document.getElementById('start-mistakes-review');
     const clearCorrectedMistakesBtn = document.getElementById('clear-corrected-mistakes');
     const clearAllMistakesBtn = document.getElementById('clear-all-mistakes');
+    const stopMistakesReviewBtn = document.getElementById('stop-mistakes-review');
+    
+    // New mistake review elements
+    const mistakeReviewExercise = document.getElementById('mistake-review-exercise');
+    const mistakeReviewQuestion = document.getElementById('mistake-review-question');
+    const mistakeReviewOptions = document.getElementById('mistake-review-options');
+    const mistakeReviewInputContainer = document.getElementById('mistake-review-input-container');
+    const mistakeReviewInput = document.getElementById('mistake-review-input');
+    const checkMistakeAnswerBtn = document.getElementById('check-mistake-answer');
+    const mistakeReviewFeedback = document.getElementById('mistake-review-feedback');
+    const currentMistakeProgress = document.getElementById('current-mistake-progress');
+    const totalMistakesToReview = document.getElementById('total-mistakes-to-review');
+    const currentCorrectedCount = document.getElementById('current-corrected-count');
+    const needsCorrectCount = document.getElementById('needs-correct-count');
+    const mistakeReviewNext = document.getElementById('mistake-review-next');
+    const nextMistakeBtn = document.getElementById('next-mistake');
     
     // Navigation
     const navBtns = document.querySelectorAll('.nav-btn');
@@ -839,7 +1011,8 @@
       if (total === 0) {
         noMistakesEl.style.display = 'block';
         mistakesListContainer.innerHTML = '';
-        startMistakesReviewBtn.style.display = 'none';
+        startMistakesReviewBtn.style.display = 'inline-block';
+        stopMistakesReviewBtn.style.display = 'none';
       } else {
         noMistakesEl.style.display = 'none';
         startMistakesReviewBtn.style.display = 'inline-block';
@@ -859,6 +1032,7 @@
         const isCorrected = mistake.correctedCount >= mistake.needsCorrectCount;
         const exerciseDiv = document.createElement('div');
         exerciseDiv.className = `mistake-exercise ${isCorrected ? 'corrected' : ''}`;
+        exerciseDiv.dataset.mistakeId = mistake.id;
         
         const typeLabels = {
           'quiz': '❓ اختبار متعدد',
@@ -886,11 +1060,307 @@
               </div>
             </div>
           </div>
+          <div style="text-align:center; margin-top:10px">
+            <button class="small ghost" onclick="reviewSingleMistake('${mistake.id}')" title="مراجعة هذا الخطأ">🔄 مراجعة</button>
+          </div>
         `;
         
         mistakesListContainer.appendChild(exerciseDiv);
       });
     }
+
+    // Review a single mistake
+    window.reviewSingleMistake = function(mistakeId) {
+      const mistake = mistakes.find(m => m.id == mistakeId);
+      if (!mistake) return;
+      
+      currentMistakeReview = mistake;
+      mistakesReviewQueue = [mistake];
+      currentMistakeIndex = 0;
+      
+      // Hide mistakes list
+      mistakesListContainer.style.display = 'none';
+      startMistakesReviewBtn.style.display = 'none';
+      stopMistakesReviewBtn.style.display = 'inline-block';
+      
+      // Show exercise
+      mistakeReviewExercise.classList.add('active');
+      loadMistakeForReview();
+    };
+
+    // ===== MISTAKES REVIEW FUNCTIONS - UPDATED =====
+    startMistakesReviewBtn.addEventListener('click', startMistakesReview);
+    stopMistakesReviewBtn.addEventListener('click', stopMistakesReview);
+    checkMistakeAnswerBtn.addEventListener('click', checkMistakeAnswer);
+    nextMistakeBtn.addEventListener('click', nextMistakeReview);
+    mistakeReviewInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && mistakesReviewActive) {
+        checkMistakeAnswer();
+      }
+    });
+
+    function startMistakesReview() {
+      if (mistakes.length === 0) {
+        alert('لا توجد أخطاء للمراجعة!');
+        return;
+      }
+      
+      mistakesReviewActive = true;
+      currentMistakeIndex = 0;
+      
+      // Get uncorrected mistakes first, then corrected ones
+      const uncorrectedMistakes = mistakes.filter(m => m.correctedCount < m.needsCorrectCount);
+      const correctedMistakes = mistakes.filter(m => m.correctedCount >= m.needsCorrectCount);
+      
+      mistakesReviewQueue = shuffle([...uncorrectedMistakes, ...correctedMistakes]);
+      
+      if (mistakesReviewQueue.length === 0) {
+        alert('لا توجد أخطاء للمراجعة!');
+        return;
+      }
+      
+      // Hide mistakes list
+      mistakesListContainer.style.display = 'none';
+      startMistakesReviewBtn.style.display = 'none';
+      clearCorrectedMistakesBtn.style.display = 'none';
+      clearAllMistakesBtn.style.display = 'none';
+      stopMistakesReviewBtn.style.display = 'inline-block';
+      
+      // Show exercise
+      mistakeReviewExercise.classList.add('active');
+      loadMistakeForReview();
+    }
+
+    function stopMistakesReview() {
+      mistakesReviewActive = false;
+      
+      // Show mistakes list
+      mistakesListContainer.style.display = 'block';
+      startMistakesReviewBtn.style.display = 'inline-block';
+      clearCorrectedMistakesBtn.style.display = 'inline-block';
+      clearAllMistakesBtn.style.display = 'inline-block';
+      stopMistakesReviewBtn.style.display = 'none';
+      
+      // Hide exercise
+      mistakeReviewExercise.classList.remove('active');
+      
+      // Reset UI
+      mistakeReviewOptions.innerHTML = '';
+      mistakeReviewInputContainer.style.display = 'none';
+      mistakeReviewFeedback.textContent = '';
+      mistakeReviewFeedback.className = 'mistake-review-feedback';
+      mistakeReviewNext.style.display = 'none';
+    }
+
+    function loadMistakeForReview() {
+      if (currentMistakeIndex >= mistakesReviewQueue.length) {
+        // Review completed
+        mistakeReviewQuestion.innerHTML = `
+          <div style="text-align:center">
+            <div style="font-size:48px">🎉</div>
+            <div style="font-size:24px;color:#ffcccc;margin:10px 0">انتهت المراجعة!</div>
+            <div style="font-size:18px;color:var(--muted)">لقد راجعت ${mistakesReviewQueue.length} خطأ</div>
+          </div>
+        `;
+        
+        mistakeReviewOptions.innerHTML = '';
+        mistakeReviewInputContainer.style.display = 'none';
+        mistakeReviewFeedback.textContent = '';
+        mistakeReviewNext.style.display = 'none';
+        
+        // Update stats
+        updateMistakesStats();
+        
+        return;
+      }
+      
+      currentMistakeReview = mistakesReviewQueue[currentMistakeIndex];
+      
+      // Update progress display
+      currentMistakeProgress.textContent = currentMistakeIndex + 1;
+      totalMistakesToReview.textContent = mistakesReviewQueue.length;
+      currentCorrectedCount.textContent = currentMistakeReview.correctedCount;
+      needsCorrectCount.textContent = currentMistakeReview.needsCorrectCount;
+      
+      // Clear previous state
+      mistakeReviewOptions.innerHTML = '';
+      mistakeReviewInputContainer.style.display = 'none';
+      mistakeReviewFeedback.textContent = '';
+      mistakeReviewFeedback.className = 'mistake-review-feedback';
+      mistakeReviewNext.style.display = 'none';
+      mistakeReviewInput.value = '';
+      
+      if (currentMistakeReview.type === 'quiz') {
+        // Show quiz-type mistake
+        mistakeReviewQuestion.innerHTML = `ما هي الكلمة الألمانية لـ:<br><strong style="color:#ffcccc;font-size:24px;margin-top:10px;display:block">${escapeHtml(currentMistakeReview.question)}</strong>`;
+        
+        // Create options
+        const numOpts = Math.max(2, Math.min(6, parseInt(optsCount.value) || 4));
+        const quizWords = words.slice(-parseInt(exerciseLimit.value) || 20);
+        const choices = buildChoices(currentMistakeReview.correct, numOpts, quizWords);
+        
+        choices.forEach(c => {
+          const opt = document.createElement('div');
+          opt.className = 'mistake-review-option';
+          opt.textContent = c;
+          opt.onclick = () => handleMistakeReviewAnswer(c, opt);
+          mistakeReviewOptions.appendChild(opt);
+        });
+        
+        mistakeReviewOptions.style.display = 'grid';
+        
+      } else if (currentMistakeReview.type === 'writing') {
+        // Show writing-type mistake
+        mistakeReviewQuestion.innerHTML = `اكتب الكلمة الألمانية لـ:<br><strong style="color:#ffcccc;font-size:28px;margin-top:10px;display:block">${escapeHtml(currentMistakeReview.question)}</strong>`;
+        
+        mistakeReviewInputContainer.style.display = 'block';
+        mistakeReviewInput.focus();
+      }
+      
+      // Pronounce if enabled
+      if (document.getElementById('usePron').checked && currentMistakeReview.type === 'writing') {
+        setTimeout(() => pronounce(currentMistakeReview.correct), 500);
+      }
+    }
+
+    function handleMistakeReviewAnswer(choice, el) {
+      if (el.classList.contains('correct') || el.classList.contains('wrong')) return;
+      
+      const allOptions = document.querySelectorAll('.mistake-review-option');
+      
+      if (choice === currentMistakeReview.correct) {
+        // Correct answer
+        el.classList.add('correct');
+        
+        // Update mistake progress
+        currentMistakeReview.correctedCount++;
+        currentMistakeReview.lastAttempt = 'correct';
+        
+        mistakeReviewFeedback.innerHTML = `
+          <div style="font-size:24px">✅ صحيح!</div>
+          <div style="margin-top:10px;font-size:18px">"${escapeHtml(currentMistakeReview.correct)}" هي الإجابة الصحيحة</div>
+        `;
+        mistakeReviewFeedback.className = 'mistake-review-feedback correct';
+        
+      } else {
+        // Wrong answer
+        el.classList.add('wrong');
+        
+        // Update mistake
+        currentMistakeReview.lastAttempt = 'wrong';
+        
+        // Highlight correct answer
+        allOptions.forEach(opt => {
+          if (opt.textContent === currentMistakeReview.correct) {
+            opt.classList.add('correct');
+          }
+          opt.style.pointerEvents = 'none';
+        });
+        
+        mistakeReviewFeedback.innerHTML = `
+          <div style="font-size:24px">❌ غير صحيح</div>
+          <div style="margin-top:10px;font-size:16px">إجابتك: "${escapeHtml(choice)}"</div>
+          <div style="margin-top:10px;font-size:16px;color:#19b56b">الإجابة الصحيحة: "${escapeHtml(currentMistakeReview.correct)}"</div>
+        `;
+        mistakeReviewFeedback.className = 'mistake-review-feedback incorrect';
+      }
+      
+      // Save the updated mistake
+      saveMistakes();
+      
+      // Show next button after delay
+      setTimeout(() => {
+        mistakeReviewNext.style.display = 'block';
+      }, 1000);
+    }
+
+    function checkMistakeAnswer() {
+      if (!currentMistakeReview || !mistakesReviewActive) return;
+      
+      const userAnswer = mistakeReviewInput.value.trim();
+      if (!userAnswer) {
+        mistakeReviewFeedback.textContent = 'الرجاء إدخال إجابة أولاً';
+        mistakeReviewFeedback.className = 'mistake-review-feedback incorrect';
+        return;
+      }
+      
+      const correctAnswer = currentMistakeReview.correct;
+      const normalizedUserAnswer = normalizeText(userAnswer);
+      const normalizedCorrectAnswer = normalizeText(correctAnswer);
+      
+      // Check if answer is correct
+      let isCorrect = false;
+      if (spellingTolerance.checked) {
+        isCorrect = normalizedUserAnswer === normalizedCorrectAnswer ||
+                   Math.abs(normalizedUserAnswer.length - normalizedCorrectAnswer.length) <= 2;
+        
+        if (!isCorrect) {
+          const distance = levenshteinDistance(normalizedUserAnswer, normalizedCorrectAnswer);
+          isCorrect = distance <= 1;
+        }
+      } else {
+        isCorrect = normalizedUserAnswer === normalizedCorrectAnswer;
+      }
+      
+      if (isCorrect) {
+        // Correct answer
+        currentMistakeReview.correctedCount++;
+        currentMistakeReview.lastAttempt = 'correct';
+        
+        mistakeReviewFeedback.innerHTML = `
+          <div style="font-size:24px">✅ صحيح!</div>
+          <div style="margin-top:10px;font-size:18px">"${escapeHtml(correctAnswer)}" هي الإجابة الصحيحة</div>
+        `;
+        mistakeReviewFeedback.className = 'mistake-review-feedback correct';
+        
+      } else {
+        // Wrong answer
+        currentMistakeReview.lastAttempt = 'wrong';
+        
+        mistakeReviewFeedback.innerHTML = `
+          <div style="font-size:24px">❌ غير صحيح</div>
+          <div style="margin-top:10px;font-size:16px">إجابتك: "${escapeHtml(userAnswer)}"</div>
+          <div style="margin-top:10px;font-size:16px;color:#19b56b">الإجابة الصحيحة: "${escapeHtml(correctAnswer)}"</div>
+        `;
+        mistakeReviewFeedback.className = 'mistake-review-feedback incorrect';
+      }
+      
+      // Save the updated mistake
+      saveMistakes();
+      
+      // Update progress display
+      currentCorrectedCount.textContent = currentMistakeReview.correctedCount;
+      
+      // Show next button after delay
+      setTimeout(() => {
+        mistakeReviewNext.style.display = 'block';
+      }, 1000);
+    }
+
+    function nextMistakeReview() {
+      currentMistakeIndex++;
+      loadMistakeForReview();
+    }
+
+    clearCorrectedMistakesBtn.addEventListener('click', () => {
+      if (confirm('هل تريد مسح جميع الأخطاء المصححة؟')) {
+        mistakes = mistakes.filter(m => m.correctedCount < m.needsCorrectCount);
+        saveMistakes();
+        if (mistakesReviewActive) {
+          stopMistakesReview();
+        }
+      }
+    });
+    
+    clearAllMistakesBtn.addEventListener('click', () => {
+      if (confirm('هل تريد مسح جميع الأخطاء؟ سيتم فقدان جميع بيانات المراجعة.')) {
+        mistakes = [];
+        saveMistakes();
+        if (mistakesReviewActive) {
+          stopMistakesReview();
+        }
+      }
+    });
 
     // Navigation
     navBtns.forEach(btn => {
@@ -915,11 +1385,21 @@
         if (pageId !== 'memory' && memoryActive) {
           stopMemoryGame();
         }
+        if (pageId !== 'mistakes' && mistakesReviewActive) {
+          stopMistakesReview();
+        }
         
         // Update mistakes page if needed
         if (pageId === 'mistakes') {
           updateMistakesStats();
           renderMistakesList();
+          // Ensure list is visible
+          mistakesListContainer.style.display = 'block';
+          startMistakesReviewBtn.style.display = 'inline-block';
+          clearCorrectedMistakesBtn.style.display = 'inline-block';
+          clearAllMistakesBtn.style.display = 'inline-block';
+          stopMistakesReviewBtn.style.display = 'none';
+          mistakeReviewExercise.classList.remove('active');
         }
       });
     });
@@ -1748,26 +2228,6 @@
       memoryComplete.style.display = 'block';
     }
 
-    // ===== MISTAKES REVIEW FUNCTIONS =====
-    clearCorrectedMistakesBtn.addEventListener('click', () => {
-      if (confirm('هل تريد مسح جميع الأخطاء المصححة؟')) {
-        mistakes = mistakes.filter(m => m.correctedCount < m.needsCorrectCount);
-        saveMistakes();
-      }
-    });
-    
-    clearAllMistakesBtn.addEventListener('click', () => {
-      if (confirm('هل تريد مسح جميع الأخطاء؟ سيتم فقدان جميع بيانات المراجعة.')) {
-        mistakes = [];
-        saveMistakes();
-      }
-    });
-    
-    startMistakesReviewBtn.addEventListener('click', () => {
-      // This would start a review session using the mistakes
-      alert('ميزة مراجعة الأخطاء التفصيلية قيد التطوير. يمكنك رؤية جميع أخطائك في القائمة أعلاه.');
-    });
-
     // ===== UTILITY FUNCTIONS =====
     function levenshteinDistance(a, b) {
       const matrix = [];
@@ -1870,6 +2330,11 @@
       if(e.key === ' ' && document.activeElement === germanInput && germanInput.value.trim()){
         e.preventDefault();
         pronounce(germanInput.value.trim());
+      }
+      
+      // Enter to check mistake answer
+      if(e.key === 'Enter' && document.activeElement === mistakeReviewInput && mistakesReviewActive){
+        checkMistakeAnswer();
       }
     });
 
