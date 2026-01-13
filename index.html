@@ -22,94 +22,94 @@
     .hidden{display:none !important;}
 
     /* Navigation */
-    .nav-bar{display:flex;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid rgba(255,11,11,0.2);flex-wrap:wrap}
-    .nav-btn{background:transparent;color:#ff9a9a;padding:8px 16px;border-radius:8px;border:1px solid rgba(255,11,11,0.3);cursor:pointer;font-weight:600;transition:all 0.3s;flex:1;min-width:120px;text-align:center}
+    .nav-bar{display:flex;gap:8px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid rgba(255,11,11,0.2);flex-wrap:wrap}
+    .nav-btn{background:transparent;color:#ff9a9a;padding:6px 12px;border-radius:6px;border:1px solid rgba(255,11,11,0.3);cursor:pointer;font-weight:600;transition:all 0.3s;font-size:12px;min-width:100px;text-align:center}
     .nav-btn:hover{background:rgba(255,11,11,0.1);color:#ffcccc}
     .nav-btn.active{background:var(--red);color:white;border-color:var(--red)}
     
     /* Pages */
-    .page{display:none;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:20px;box-shadow:0 6px 18px rgba(23,2,2,0.6);border:1px solid rgba(255,11,11,0.12);min-height:500px}
+    .page{display:none;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:15px;box-shadow:0 6px 18px rgba(23,2,2,0.6);border:1px solid rgba(255,11,11,0.12);min-height:500px}
     .page.active{display:block;animation:fadeIn 0.5s}
     
     /* Editor page */
-    .editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
     @media(max-width:768px){.editor-grid{grid-template-columns:1fr}}
     
-    .input-group{margin-bottom:15px}
-    h1{color:#ffe6e6;margin:0 0 15px 0;font-size:24px;border-bottom:2px solid rgba(255,11,11,0.3);padding-bottom:8px}
-    h2{color:#ffcccc;margin:15px 0 10px 0;font-size:18px}
-    label{display:block;margin:8px 0 6px;color:var(--muted);font-size:14px}
-    input[type=text], input[type=number], textarea{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.3);color:#ffe6e6;font-size:15px;resize:vertical}
+    .input-group{margin-bottom:10px}
+    h1{color:#ffe6e6;margin:0 0 12px 0;font-size:20px;border-bottom:2px solid rgba(255,11,11,0.3);padding-bottom:6px}
+    h2{color:#ffcccc;margin:12px 0 8px 0;font-size:16px}
+    label{display:block;margin:6px 0 4px;color:var(--muted);font-size:13px}
+    input[type=text], input[type=number], textarea{width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.3);color:#ffe6e6;font-size:14px;resize:vertical}
     input[type=text]:focus, input[type=number]:focus, textarea:focus{outline:none;border-color:var(--red-light);box-shadow:0 0 0 2px rgba(255,61,61,0.2)}
     
-    .button-group{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}
-    button{background:var(--red);color:white;padding:10px 16px;border-radius:8px;border:none;cursor:pointer;font-weight:600;transition:all 0.2s;font-size:14px}
+    .button-group{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+    button{background:var(--red);color:white;padding:8px 12px;border-radius:6px;border:none;cursor:pointer;font-weight:600;transition:all 0.2s;font-size:13px}
     button:hover{background:var(--red-light);transform:translateY(-1px)}
     button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.1);color:#ffcccc}
     button.ghost:hover{background:rgba(255,255,255,0.05);border-color:var(--red-light)}
-    button.small{font-size:13px;padding:8px 12px}
+    button.small{font-size:12px;padding:6px 10px}
     button.wide{width:100%}
     
     /* Word list */
-    .list-container{margin-top:20px;border:1px solid rgba(255,11,11,0.1);border-radius:8px;overflow:hidden}
-    .list-header{background:rgba(255,11,11,0.1);padding:12px;display:flex;justify-content:space-between;color:#ffcccc;font-weight:600}
-    .word-list{height:400px;overflow:auto;background:linear-gradient(180deg, rgba(0,0,0,0.3), rgba(0,0,0,0.2))}
-    @media(max-width:768px){.word-list{height:300px}}
+    .list-container{margin-top:15px;border:1px solid rgba(255,11,11,0.1);border-radius:6px;overflow:hidden}
+    .list-header{background:rgba(255,11,11,0.1);padding:10px;display:flex;justify-content:space-between;color:#ffcccc;font-weight:600;font-size:13px}
+    .word-list{height:350px;overflow:auto;background:linear-gradient(180deg, rgba(0,0,0,0.3), rgba(0,0,0,0.2))}
+    @media(max-width:768px){.word-list{height:250px}}
     
-    .word-item{display:flex;justify-content:space-between;align-items:center;padding:12px;border-bottom:1px solid rgba(255,255,255,0.03);transition:background 0.2s}
+    .word-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid rgba(255,255,255,0.03);transition:background 0.2s;font-size:13px}
     .word-item:hover{background:rgba(255,11,11,0.05)}
     .word-content{flex-grow:1}
-    .word-text{font-size:16px;color:#ffebeb;font-weight:500}
-    .word-meaning{font-size:13px;color:var(--muted);margin-top:4px}
-    .word-actions{display:flex;gap:6px;flex-shrink:0}
+    .word-text{font-size:14px;color:#ffebeb;font-weight:500}
+    .word-meaning{font-size:12px;color:var(--muted);margin-top:3px}
+    .word-actions{display:flex;gap:5px;flex-shrink:0}
     
     /* Quiz page */
     .quiz-container{max-width:600px;margin:0 auto}
-    .quiz-header{text-align:center;margin-bottom:25px}
-    .quiz-stats{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding:15px;background:rgba(255,11,11,0.08);border-radius:10px;border:1px solid rgba(255,11,11,0.2)}
+    .quiz-header{text-align:center;margin-bottom:20px}
+    .quiz-stats{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding:12px;background:rgba(255,11,11,0.08);border-radius:8px;border:1px solid rgba(255,11,11,0.2)}
     .stat-box{text-align:center}
-    .stat-value{font-size:28px;color:#ffebeb;font-weight:bold}
-    .stat-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+    .stat-value{font-size:24px;color:#ffebeb;font-weight:bold}
+    .stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
     
-    .quiz-question{background:linear-gradient(90deg, rgba(255,11,11,0.15), rgba(58,6,6,0.15));padding:20px;border-radius:12px;margin-bottom:25px;color:#ffebeb;font-size:20px;text-align:center;min-height:120px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,11,11,0.2)}
+    .quiz-question{background:linear-gradient(90deg, rgba(255,11,11,0.15), rgba(58,6,6,0.15));padding:15px;border-radius:10px;margin-bottom:20px;color:#ffebeb;font-size:18px;text-align:center;min-height:100px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,11,11,0.2)}
     
-    .quiz-options{display:grid;gap:12px;margin-bottom:20px}
-    .quiz-option{padding:16px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.3);cursor:pointer;text-align:center;font-size:16px;color:#ffebeb;transition:all 0.2s}
+    .quiz-options{display:grid;gap:10px;margin-bottom:15px}
+    .quiz-option{padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.3);cursor:pointer;text-align:center;font-size:14px;color:#ffebeb;transition:all 0.2s}
     .quiz-option:hover{background:rgba(255,11,11,0.1);border-color:var(--red-light)}
     .quiz-option.correct{background:rgba(25,181,107,0.2);border-color:var(--green);color:#d1ffe9}
     .quiz-option.wrong{background:rgba(255,77,77,0.2);border-color:#ff4d4d;color:#ffd1d1}
     
-    .quiz-controls{display:flex;gap:10px;justify-content:center;margin-top:25px}
+    .quiz-controls{display:flex;gap:8px;justify-content:center;margin-top:20px}
     
     /* Writing exercise page */
     .writing-container{max-width:600px;margin:0 auto}
     
-    .writing-prompt{background:linear-gradient(90deg, rgba(255,11,11,0.1), rgba(58,6,6,0.1));padding:25px;border-radius:12px;margin-bottom:25px;border:2px solid rgba(255,11,11,0.2);text-align:center}
-    .writing-prompt-text{font-size:22px;color:#ffcccc;margin-bottom:15px}
-    .writing-hint{font-size:14px;color:var(--muted);font-style:italic;margin-top:10px}
+    .writing-prompt{background:linear-gradient(90deg, rgba(255,11,11,0.1), rgba(58,6,6,0.1));padding:20px;border-radius:10px;margin-bottom:20px;border:2px solid rgba(255,11,11,0.2);text-align:center}
+    .writing-prompt-text{font-size:20px;color:#ffcccc;margin-bottom:12px}
+    .writing-hint{font-size:13px;color:var(--muted);font-style:italic;margin-top:8px}
     
-    .writing-input-container{margin:30px 0}
-    .writing-input-label{display:block;margin-bottom:10px;color:#ffcccc;font-size:16px}
-    .writing-input{width:100%;padding:15px;font-size:18px;text-align:center;letter-spacing:1px}
+    .writing-input-container{margin:20px 0}
+    .writing-input-label{display:block;margin-bottom:8px;color:#ffcccc;font-size:14px}
+    .writing-input{width:100%;padding:12px;font-size:16px;text-align:center;letter-spacing:1px}
     
-    .writing-feedback{min-height:60px;margin:20px 0;padding:15px;border-radius:10px;transition:all 0.3s;text-align:center}
+    .writing-feedback{min-height:50px;margin:15px 0;padding:12px;border-radius:8px;transition:all 0.3s;text-align:center;font-size:14px}
     .writing-feedback.correct{background:rgba(25,181,107,0.15);border:1px solid var(--green);color:#d1ffe9}
     .writing-feedback.incorrect{background:rgba(255,77,77,0.15);border:1px solid #ff4d4d;color:#ffd1d1}
     .writing-feedback.show-answer{background:rgba(255,165,0,0.15);border:1px solid #ffa500;color:#fff0d1}
     
-    .writing-answer{font-size:22px;color:#ffcccc;font-weight:bold;margin:10px 0}
+    .writing-answer{font-size:20px;color:#ffcccc;font-weight:bold;margin:8px 0}
     
-    /* Memory Game page - FIXED FLIP ANIMATION */
+    /* Memory Game page - SMALLER CARDS */
     .memory-container{max-width:800px;margin:0 auto}
-    .memory-stats{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding:15px;background:rgba(255,11,11,0.08);border-radius:10px;border:1px solid rgba(255,11,11,0.2)}
+    .memory-stats{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding:12px;background:rgba(255,11,11,0.08);border-radius:8px;border:1px solid rgba(255,11,11,0.2)}
     
-    .memory-grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:15px;margin:30px auto}
+    .memory-grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:10px;margin:20px auto}
     @media(max-width:768px){.memory-grid{grid-template-columns:repeat(3, 1fr)}}
     @media(max-width:480px){.memory-grid{grid-template-columns:repeat(2, 1fr)}}
     
     .memory-card{
       aspect-ratio:3/4;
-      border-radius:12px;
+      border-radius:8px;
       cursor:pointer;
       transition:all 0.3s;
       position:relative;
@@ -124,7 +124,7 @@
       text-align:center;
       transition:transform 0.6s;
       transform-style:preserve-3d;
-      border-radius:10px;
+      border-radius:6px;
     }
     
     .memory-card.flipped .memory-card-inner{
@@ -146,11 +146,11 @@
       width:100%;
       height:100%;
       backface-visibility:hidden;
-      border-radius:10px;
+      border-radius:6px;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:15px;
+      padding:10px;
       text-align:center;
       font-weight:bold;
       -webkit-backface-visibility:hidden;
@@ -160,7 +160,7 @@
     .card-back{
       background:linear-gradient(145deg, rgba(255,11,11,0.8), rgba(58,6,6,0.8));
       color:#ffebeb;
-      font-size:36px;
+      font-size:28px;
       border:2px solid rgba(255,11,11,0.5);
     }
     
@@ -168,86 +168,133 @@
       background:linear-gradient(145deg, rgba(0,0,0,0.8), rgba(20,0,0,0.8));
       color:#ffebeb;
       transform:rotateY(180deg);
-      font-size:20px;
-      line-height:1.4;
+      font-size:16px;
+      line-height:1.3;
       border:2px solid rgba(255,11,11,0.3);
       flex-direction:column;
     }
     
     .card-flag{
-      font-size:24px;
-      margin-bottom:10px;
+      font-size:20px;
+      margin-bottom:8px;
     }
     
     .card-text{
-      font-size:18px;
+      font-size:14px;
       word-break:break-word;
     }
     
-    .memory-controls{display:flex;gap:10px;justify-content:center;margin-top:25px}
+    .memory-controls{display:flex;gap:8px;justify-content:center;margin-top:20px}
     
-    /* Mistake Review page */
-    .mistakes-container{max-width:800px;margin:0 auto}
-    .mistakes-header{text-align:center;margin-bottom:25px}
+    /* Mistake Review Page - WORKING MISTAKE REVIEW */
+    .mistakes-review-container{max-width:600px;margin:0 auto}
     
-    .mistake-exercise{background:rgba(0,0,0,0.3);border-radius:12px;padding:20px;margin-bottom:20px;border-left:4px solid #ff4d4d}
-    .mistake-exercise.corrected{border-left-color:var(--green)}
-    .mistake-meta{display:flex;justify-content:space-between;margin-bottom:15px;color:var(--muted);font-size:14px}
-    .mistake-type{background:rgba(255,11,11,0.2);padding:4px 8px;border-radius:4px}
+    .mistake-review-exercise{
+      background:linear-gradient(90deg, rgba(255,11,11,0.1), rgba(58,6,6,0.1));
+      padding:15px;
+      border-radius:10px;
+      margin-bottom:15px;
+      border:2px solid rgba(255,11,11,0.3);
+    }
     
-    .mistake-review-controls{display:flex;gap:10px;justify-content:center;margin-top:20px}
+    .mistake-meta{
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:10px;
+      font-size:12px;
+      color:var(--muted);
+    }
     
-    .empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
-    .empty-state-icon{font-size:60px;margin-bottom:20px}
+    .mistake-review-type{
+      background:rgba(255,11,11,0.2);
+      padding:3px 6px;
+      border-radius:4px;
+    }
     
-    /* Mistakes review */
-    .mistakes-section{margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,11,11,0.2)}
-    .mistakes-title{color:#ff4d4d;font-size:18px;margin-bottom:15px;display:flex;align-items:center;gap:8px}
-    .mistakes-title:before{content:"⚠️"}
+    .mistake-review-question{
+      font-size:18px;
+      color:#ffcccc;
+      margin-bottom:15px;
+      text-align:center;
+    }
     
-    .mistake-item{margin:12px 0;padding:12px;background:rgba(255,77,77,0.08);border-radius:8px;border-left:3px solid #ff4d4d}
-    .mistake-question{color:#ffcccc;font-weight:500;margin-bottom:6px}
-    .mistake-answer{display:flex;justify-content:space-between;margin-top:6px;font-size:14px}
-    .correct-answer{color:var(--green)}
-    .wrong-answer{color:#ff4d4d}
+    .mistake-review-answer{
+      display:flex;
+      justify-content:space-between;
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px solid rgba(255,255,255,0.1);
+    }
     
-    /* Settings */
-    .settings-group{margin:20px 0}
-    .setting-item{display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(0,0,0,0.2);border-radius:8px;margin:10px 0;flex-wrap:wrap;gap:10px}
+    .mistake-review-correct{
+      color:#19b56b;
+      font-size:14px;
+    }
+    
+    .mistake-review-wrong{
+      color:#ff4d4d;
+      font-size:14px;
+    }
+    
+    .mistake-review-input{
+      width:100%;
+      padding:10px;
+      margin-top:10px;
+      border-radius:6px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:rgba(0,0,0,0.3);
+      color:#ffe6e6;
+      font-size:14px;
+      text-align:center;
+    }
+    
+    .mistake-review-feedback{
+      min-height:40px;
+      margin:10px 0;
+      padding:10px;
+      border-radius:6px;
+      text-align:center;
+      font-size:14px;
+    }
+    
+    .mistake-review-controls{display:flex;gap:8px;justify-content:center;margin-top:15px}
+    
+    .empty-state{text-align:center;padding:40px 20px;color:var(--muted)}
+    .empty-state-icon{font-size:48px;margin-bottom:15px}
     
     /* Exercise selector */
-    .exercise-selector{margin:20px 0;padding:15px;background:rgba(255,11,11,0.08);border-radius:10px}
-    .exercise-buttons{display:grid;grid-template-columns:repeat(2, 1fr);gap:15px;margin-top:15px}
+    .exercise-selector{margin:15px 0;padding:12px;background:rgba(255,11,11,0.08);border-radius:8px}
+    .exercise-buttons{display:grid;grid-template-columns:repeat(2, 1fr);gap:10px;margin-top:12px}
     @media(max-width:600px){.exercise-buttons{grid-template-columns:1fr}}
     
-    .exercise-btn{background:rgba(255,11,11,0.1);border:1px solid rgba(255,11,11,0.3);padding:20px;border-radius:10px;cursor:pointer;transition:all 0.3s;text-align:center}
-    .exercise-btn:hover{background:rgba(255,11,11,0.2);transform:translateY(-3px)}
-    .exercise-btn .icon{font-size:40px;margin-bottom:10px}
-    .exercise-btn .title{font-size:18px;color:#ffcccc;font-weight:bold;margin-bottom:8px}
-    .exercise-btn .desc{font-size:13px;color:var(--muted)}
+    .exercise-btn{background:rgba(255,11,11,0.1);border:1px solid rgba(255,11,11,0.3);padding:15px;border-radius:8px;cursor:pointer;transition:all 0.3s;text-align:center}
+    .exercise-btn:hover{background:rgba(255,11,11,0.2);transform:translateY(-2px)}
+    .exercise-btn .icon{font-size:32px;margin-bottom:8px}
+    .exercise-btn .title{font-size:16px;color:#ffcccc;font-weight:bold;margin-bottom:6px}
+    .exercise-btn .desc{font-size:12px;color:var(--muted)}
     
     /* Animations */
     @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.7}}
     @keyframes flip{0%{transform:rotateY(0)}50%{transform:rotateY(90deg)}100%{transform:rotateY(180deg)}}
-    @keyframes match{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
-    @keyframes shake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-5px)}20%,40%,60%,80%{transform:translateX(5px)}}
+    @keyframes match{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+    @keyframes shake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-3px)}20%,40%,60%,80%{transform:translateX(3px)}}
     
     .shake{animation:shake 0.5s}
     
-    footer{text-align:center;margin-top:20px;color:rgba(255,255,255,0.2);font-size:12px;padding-top:15px;border-top:1px solid rgba(255,255,255,0.05)}
+    footer{text-align:center;margin-top:15px;color:rgba(255,255,255,0.2);font-size:11px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05)}
   </style>
 </head>
 <body>
   <div class="app">
     <!-- Navigation -->
     <div class="nav-bar">
-      <button class="nav-btn active" data-page="editor">✏️ محرر الكلمات</button>
-      <button class="nav-btn" data-page="exercises">🎯 التمارين</button>
-      <button class="nav-btn" data-page="quiz">❓ اختبار متعدد</button>
+      <button class="nav-btn active" data-page="editor">✏️ محرر</button>
+      <button class="nav-btn" data-page="exercises">🎯 تمارين</button>
+      <button class="nav-btn" data-page="quiz">❓ اختيار</button>
       <button class="nav-btn" data-page="writing">✍️ كتابة</button>
-      <button class="nav-btn" data-page="memory">🎴 لعبة الذاكرة</button>
-      <button class="nav-btn" data-page="mistakes">📊 مراجعة الأخطاء</button>
+      <button class="nav-btn" data-page="memory">🎴 ذاكرة</button>
+      <button class="nav-btn" data-page="mistakes">📊 أخطاء</button>
       <button class="nav-btn" data-page="settings">⚙️ إعدادات</button>
     </div>
 
@@ -268,7 +315,7 @@
           <div class="button-group">
             <button id="add">➕ أضف</button>
             <button id="pron" class="ghost">🔊 نطق</button>
-            <button id="clear-inputs" class="ghost">🗑️ مسح الحقول</button>
+            <button id="clear-inputs" class="ghost">🗑️ مسح</button>
           </div>
           
           <h2>إدارة البيانات</h2>
@@ -283,13 +330,13 @@
           <h1>قائمة الكلمات (<span id="wordCount">0</span>)</h1>
           <div class="list-container">
             <div class="list-header">
-              <span>كلمة ألمانية</span>
+              <span>ألمانية</span>
               <span>إنجليزية</span>
             </div>
             <div class="word-list" id="wordList"></div>
           </div>
           
-          <div class="button-group" style="margin-top:15px">
+          <div class="button-group" style="margin-top:12px">
             <button id="clear-all" class="ghost" style="background:rgba(255,77,77,0.2);color:#ff9999">🗑️ حذف الكل</button>
             <button id="shuffle-words" class="ghost">🔀 عشوائي</button>
           </div>
@@ -303,21 +350,21 @@
         <h1>اختر نوع التمرين</h1>
         
         <div class="exercise-selector">
-          <p style="color:#ffcccc; text-align:center; margin-bottom:20px">
-            اختر نوع التمرين الذي ترغب في ممارسته لتحسين مهاراتك في اللغة الألمانية.
+          <p style="color:#ffcccc; text-align:center; margin-bottom:15px; font-size:14px">
+            اختر نوع التمرين لتحسين مهاراتك في اللغة الألمانية.
           </p>
           
           <div class="exercise-buttons">
             <button class="exercise-btn" data-exercise="quiz">
               <div class="icon">❓</div>
               <div class="title">اختبار متعدد</div>
-              <div class="desc">اختر الإجابة الصحيحة من بين الخيارات</div>
+              <div class="desc">اختر الإجابة الصحيحة</div>
             </button>
             
             <button class="exercise-btn" data-exercise="writing">
               <div class="icon">✍️</div>
               <div class="title">تمرين الكتابة</div>
-              <div class="desc">اكتب الكلمة الألمانية بنفسك</div>
+              <div class="desc">اكتب الكلمة الألمانية</div>
             </button>
             
             <button class="exercise-btn" data-exercise="memory">
@@ -334,14 +381,13 @@
           </div>
         </div>
         
-        <div style="margin-top:30px; padding:20px; background:rgba(255,11,11,0.05); border-radius:10px">
-          <h2 style="color:#ffcccc">نصائح للتعلم</h2>
-          <ul style="color:var(--muted); padding-left:20px">
-            <li>ابدأ بتمرين الاختبار المتعدد لاختبار معرفتك الأساسية</li>
-            <li>استخدم تمرين الكتابة لتحسين التهجئة والذاكرة</li>
-            <li>العب لعبة الذاكرة لتعزيز الربط بين الكلمات</li>
-            <li>راجع أخطاءك بانتظام لتحسين نقاط الضعف</li>
-            <li>استمع إلى النطق لتحسين مهارات الاستماع والنطق</li>
+        <div style="margin-top:20px; padding:15px; background:rgba(255,11,11,0.05); border-radius:8px">
+          <h2 style="color:#ffcccc; font-size:16px">نصائح للتعلم</h2>
+          <ul style="color:var(--muted); padding-left:15px; font-size:13px; margin:0">
+            <li>ابدأ بتمرين الاختبار المتعدد</li>
+            <li>استخدم تمرين الكتابة لتحسين التهجئة</li>
+            <li>العب لعبة الذاكرة باستخدام آخر 8 كلمات</li>
+            <li>راجع أخطاءك بانتظام</li>
           </ul>
         </div>
       </div>
@@ -374,17 +420,10 @@
         <div class="quiz-options" id="quiz-opts"></div>
         
         <div class="quiz-controls">
-          <button id="start-quiz" style="background:linear-gradient(135deg, var(--red), #ff3d3d);padding:12px 30px;font-size:16px">▶️ بدء الاختبار</button>
+          <button id="start-quiz" style="background:linear-gradient(135deg, var(--red), #ff3d3d);padding:10px 20px;font-size:14px">▶️ بدء الاختبار</button>
           <button id="next-question" class="ghost" style="display:none">⏭️ التالي</button>
           <button id="end-quiz" class="ghost" style="display:none">⏹️ إنهاء</button>
           <button id="back-to-exercises-quiz" class="ghost">🔙 العودة</button>
-        </div>
-        
-        <div id="quiz-mistakes-container" style="display:none">
-          <div class="mistakes-section">
-            <h2 class="mistakes-title">الأخطاء (<span id="quiz-mistakes-count">0</span>)</h2>
-            <div id="quiz-mistakes-list"></div>
-          </div>
         </div>
       </div>
     </div>
@@ -426,24 +465,17 @@
         <div class="writing-feedback" id="writing-feedback"></div>
         
         <div class="quiz-controls">
-          <button id="start-writing" style="background:linear-gradient(135deg, var(--red), #ff3d3d);padding:12px 30px;font-size:16px">▶️ بدء التمرين</button>
+          <button id="start-writing" style="background:linear-gradient(135deg, var(--red), #ff3d3d);padding:10px 20px;font-size:14px">▶️ بدء التمرين</button>
           <button id="check-answer" class="ghost" style="display:none">✓ تحقق</button>
           <button id="next-writing" class="ghost" style="display:none">⏭️ التالي</button>
           <button id="show-answer" class="ghost" style="display:none">👁️ عرض الإجابة</button>
           <button id="end-writing" class="ghost" style="display:none">⏹️ إنهاء</button>
           <button id="back-to-exercises-writing" class="ghost">🔙 العودة</button>
         </div>
-        
-        <div id="writing-mistakes-container" style="display:none">
-          <div class="mistakes-section">
-            <h2 class="mistakes-title">الأخطاء (<span id="writing-mistakes-count">0</span>)</h2>
-            <div id="writing-mistakes-list"></div>
-          </div>
-        </div>
       </div>
     </div>
 
-    <!-- Memory Game Page - FIXED FLIP ANIMATION -->
+    <!-- Memory Game Page - USES LAST 8 WORDS -->
     <div class="page" id="memory-page">
       <div class="memory-container">
         <h1>لعبة الذاكرة 🎴</h1>
@@ -451,11 +483,11 @@
         <div class="memory-stats">
           <div class="stat-box">
             <div class="stat-value" id="memory-moves">0</div>
-            <div class="stat-label">عدد الحركات</div>
+            <div class="stat-label">الحركات</div>
           </div>
           <div class="stat-box">
             <div class="stat-value" id="memory-matched">0</div>
-            <div class="stat-label">الأزواج المطابقة</div>
+            <div class="stat-label">المطابقة</div>
           </div>
           <div class="stat-box">
             <div class="stat-value" id="memory-time">0:00</div>
@@ -463,30 +495,35 @@
           </div>
         </div>
         
+        <div style="margin:10px 0; padding:10px; background:rgba(255,11,11,0.05); border-radius:6px; text-align:center;">
+          <div style="color:#ffcccc; font-size:14px; margin-bottom:5px">⚠️ تستخدم اللعبة آخر 8 كلمات من قائمتك</div>
+          <div style="color:var(--muted); font-size:12px">(4 أزواج: ألمانية ↔ إنجليزية)</div>
+        </div>
+        
         <div class="memory-grid" id="memory-grid">
-          <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)">
-            اضغط على "بدء اللعبة" لبدء لعبة الذاكرة
+          <div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--muted);font-size:14px">
+            اضغط على "بدء اللعبة" لبدء لعبة الذاكرة باستخدام آخر 8 كلمات
           </div>
         </div>
         
         <div class="memory-controls">
-          <button id="start-memory" style="background:linear-gradient(135deg, var(--red), #ff3d3d);padding:12px 30px;font-size:16px">▶️ بدء اللعبة</button>
-          <button id="restart-memory" class="ghost" style="display:none">🔄 إعادة تشغيل</button>
+          <button id="start-memory" style="background:linear-gradient(135deg, var(--red), #ff3d3d);padding:10px 20px;font-size:14px">▶️ بدء اللعبة</button>
+          <button id="restart-memory" class="ghost" style="display:none">🔄 إعادة</button>
           <button id="back-to-exercises-memory" class="ghost">🔙 العودة</button>
         </div>
         
-        <div id="memory-complete" style="display:none;text-align:center;margin-top:30px;padding:20px;background:rgba(25,181,107,0.1);border-radius:10px;border:1px solid var(--green)">
-          <div style="font-size:48px">🎉</div>
-          <div style="font-size:24px;color:#ffcccc;margin:10px 0">أحسنت! أكملت اللعبة</div>
-          <div style="color:var(--muted)">حركات: <span id="final-moves">0</span> | وقت: <span id="final-time">0:00</span></div>
-          <button class="ghost" style="margin-top:15px" onclick="restartMemoryGame()">🔄 لعب مرة أخرى</button>
+        <div id="memory-complete" style="display:none;text-align:center;margin-top:20px;padding:15px;background:rgba(25,181,107,0.1);border-radius:8px;border:1px solid var(--green)">
+          <div style="font-size:36px">🎉</div>
+          <div style="font-size:20px;color:#ffcccc;margin:8px 0">أحسنت! أكملت اللعبة</div>
+          <div style="color:var(--muted);font-size:13px">حركات: <span id="final-moves">0</span> | وقت: <span id="final-time">0:00</span></div>
+          <button class="ghost" style="margin-top:10px;padding:8px 15px" onclick="restartMemoryGame()">🔄 لعب مرة أخرى</button>
         </div>
       </div>
     </div>
 
-    <!-- Mistake Review Page -->
+    <!-- Mistake Review Page - WORKING MISTAKE REVIEW -->
     <div class="page" id="mistakes-page">
-      <div class="mistakes-container">
+      <div class="mistakes-review-container">
         <h1>📊 مراجعة الأخطاء</h1>
         
         <div class="quiz-stats">
@@ -495,30 +532,67 @@
             <div class="stat-label">إجمالي الأخطاء</div>
           </div>
           <div class="stat-box">
-            <div class="stat-value" id="corrected-mistakes">0</div>
-            <div class="stat-label">الأخطاء المصححة</div>
+            <div class="stat-value" id="remaining-mistakes">0</div>
+            <div class="stat-label">المتبقي</div>
           </div>
           <div class="stat-box">
-            <div class="stat-value" id="accuracy-mistakes">0%</div>
-            <div class="stat-label">دقة المراجعة</div>
+            <div class="stat-value" id="review-accuracy">0%</div>
+            <div class="stat-label">الدقة</div>
           </div>
         </div>
         
-        <div id="mistakes-list-container">
-          <!-- Mistakes will be dynamically inserted here -->
+        <div id="mistake-review-exercise" style="display:none">
+          <div class="mistake-review-exercise">
+            <div class="mistake-meta">
+              <span class="mistake-review-type" id="review-type">❓ اختبار متعدد</span>
+              <span id="review-progress">1/10</span>
+            </div>
+            <div class="mistake-review-question" id="review-question">
+              What is the German word for "Apple"?
+            </div>
+            
+            <!-- Quiz Type Exercise -->
+            <div id="review-quiz-options" style="display:none">
+              <div class="quiz-options" id="review-opts"></div>
+            </div>
+            
+            <!-- Writing Type Exercise -->
+            <div id="review-writing-input" style="display:none">
+              <input type="text" class="mistake-review-input" id="review-answer-input" placeholder="اكتب إجابتك هنا..." />
+              <div class="mistake-review-feedback" id="review-feedback"></div>
+            </div>
+            
+            <div class="mistake-review-answer" id="review-previous-answer" style="display:none">
+              <div class="mistake-review-correct">✅ <span id="review-correct-answer">Apfel</span></div>
+              <div class="mistake-review-wrong">❌ <span id="review-wrong-answer">Birne</span></div>
+            </div>
+          </div>
+          
+          <div class="mistake-review-controls">
+            <button id="check-review-answer" class="ghost">✓ تحقق</button>
+            <button id="next-mistake" class="ghost" style="display:none">⏭️ التالي</button>
+            <button id="show-review-answer" class="ghost">👁️ عرض الإجابة</button>
+            <button id="end-review" class="ghost">⏹️ إنهاء</button>
+          </div>
         </div>
         
-        <div id="no-mistakes" class="empty-state" style="display:none">
+        <div id="no-mistakes-review" class="empty-state">
           <div class="empty-state-icon">✅</div>
-          <h2 style="color:#ffcccc">لا توجد أخطاء للمراجعة!</h2>
-          <p style="color:var(--muted);margin-top:10px">استمر في ممارسة التمارين، وسيتم إضافة الأخطاء هنا تلقائياً.</p>
-          <button class="ghost" style="margin-top:20px" onclick="document.querySelector('[data-page=\"exercises\"]').click()">🚀 ابدأ التمرين</button>
+          <h2 style="color:#ffcccc;font-size:18px">لا توجد أخطاء للمراجعة!</h2>
+          <p style="color:var(--muted);margin-top:8px;font-size:13px">استمر في ممارسة التمارين، وسيتم إضافة الأخطاء هنا تلقائياً.</p>
+          <button class="ghost" style="margin-top:15px;padding:8px 15px" onclick="document.querySelector('[data-page=\"exercises\"]').click()">🚀 ابدأ التمرين</button>
         </div>
         
-        <div class="mistake-review-controls">
-          <button id="start-mistakes-review" class="ghost" style="display:none">▶️ بدء المراجعة</button>
-          <button id="clear-corrected-mistakes" class="ghost">🗑️ مسح الأخطاء المصححة</button>
-          <button id="clear-all-mistakes" class="ghost" style="background:rgba(255,77,77,0.2);color:#ff9999">🗑️ مسح جميع الأخطاء</button>
+        <div id="review-complete" class="empty-state" style="display:none">
+          <div class="empty-state-icon">🎉</div>
+          <h2 style="color:#ffcccc;font-size:18px">أكملت مراجعة الأخطاء!</h2>
+          <p style="color:var(--muted);margin-top:8px;font-size:13px">الدقة النهائية: <span id="final-review-accuracy">0%</span></p>
+          <button class="ghost" style="margin-top:15px;padding:8px 15px" onclick="startMistakeReview()">🔄 مراجعة أخرى</button>
+        </div>
+        
+        <div class="button-group" style="margin-top:20px;justify-content:center">
+          <button id="start-review" class="ghost" style="display:none">▶️ بدء المراجعة</button>
+          <button id="clear-mistakes" class="ghost" style="background:rgba(255,77,77,0.2);color:#ff9999">🗑️ مسح الأخطاء</button>
         </div>
       </div>
     </div>
@@ -531,7 +605,7 @@
         <h2>إعدادات التمارين</h2>
         <div class="setting-item">
           <span>عدد الخيارات في الاختبار:</span>
-          <select id="optionsCount" style="background:rgba(0,0,0,0.3);color:#ffebeb;border:1px solid rgba(255,255,255,0.1);padding:6px 10px;border-radius:6px">
+          <select id="optionsCount" style="background:rgba(0,0,0,0.3);color:#ffebeb;border:1px solid rgba(255,255,255,0.1);padding:5px 8px;border-radius:6px;font-size:13px">
             <option value="2">2 خيارات</option>
             <option value="3">3 خيارات</option>
             <option value="4" selected>4 خيارات</option>
@@ -542,14 +616,14 @@
         
         <div class="setting-item">
           <span>عدد الكلمات في التمرين:</span>
-          <input type="number" id="exerciseLimit" min="5" max="100" value="20" style="width:80px;text-align:center" />
+          <input type="number" id="exerciseLimit" min="5" max="100" value="20" style="width:70px;text-align:center;font-size:13px;padding:5px" />
         </div>
         
         <div class="setting-item">
           <span>النطق التلقائي:</span>
-          <label style="cursor:pointer">
+          <label style="cursor:pointer;font-size:13px">
             <input type="checkbox" id="usePron" checked />
-            <span style="margin-left:8px">تشغيل النطق عند كل سؤال</span>
+            <span style="margin-left:6px">تشغيل النطق</span>
           </label>
         </div>
       </div>
@@ -558,39 +632,14 @@
         <h2>إعدادات الكتابة</h2>
         <div class="setting-item">
           <span>تسامح الأخطاء الإملائية:</span>
-          <label style="cursor:pointer">
+          <label style="cursor:pointer;font-size:13px">
             <input type="checkbox" id="spellingTolerance" checked />
-            <span style="margin-left:8px">تجاهل الأخطاء الإملائية البسيطة</span>
-          </label>
-        </div>
-        
-        <div class="setting-item">
-          <span>عرض الإجابة تلقائياً:</span>
-          <label style="cursor:pointer">
-            <input type="checkbox" id="autoShowAnswer" />
-            <span style="margin-left:8px">عرض الإجابة بعد الخطأ</span>
+            <span style="margin-left:6px">تجاهل الأخطاء البسيطة</span>
           </label>
         </div>
       </div>
       
-      <div class="settings-group">
-        <h2>إعدادات مراجعة الأخطاء</h2>
-        <div class="setting-item">
-          <span>عدد المرات اللازمة للإزالة:</span>
-          <input type="number" id="mistakesToRemove" min="1" max="5" value="2" style="width:80px;text-align:center" />
-          <span style="font-size:12px;color:var(--muted)">(مرات للإجابة الصحيحة)</span>
-        </div>
-      </div>
-      
-      <div class="settings-group">
-        <h2>المظهر</h2>
-        <div class="setting-item">
-          <span>اللون الأساسي:</span>
-          <input type="color" id="themeColor" value="#ff0b0b" style="width:40px;height:30px;border:none;background:none;cursor:pointer" />
-        </div>
-      </div>
-      
-      <div class="button-group" style="margin-top:30px">
+      <div class="button-group" style="margin-top:20px;justify-content:center">
         <button id="reset-settings" class="ghost">🔄 إعادة الضبط</button>
         <button id="export-data" class="ghost">📦 نسخ احتياطي</button>
       </div>
@@ -604,28 +653,29 @@
 
   <script>
     // Data & storage
-    const WORDS_KEY = 'german_trainer_words_v4';
+    const WORDS_KEY = 'german_trainer_words_v6';
     const SETTINGS_KEY = 'german_trainer_settings';
     const MISTAKES_KEY = 'german_trainer_mistakes';
     
     let words = JSON.parse(localStorage.getItem(WORDS_KEY) || '[]');
-    let settings = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{"optionsCount":4,"usePron":true,"exerciseLimit":20,"spellingTolerance":true,"autoShowAnswer":false,"mistakesToRemove":2,"themeColor":"#ff0b0b"}');
+    let settings = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{"optionsCount":4,"usePron":true,"exerciseLimit":20,"spellingTolerance":true,"themeColor":"#ff0b0b"}');
     let mistakes = JSON.parse(localStorage.getItem(MISTAKES_KEY) || '[]');
     
-    // Game variables
+    // Exercise variables
     let quizQueue = [];
     let writingQueue = [];
     let memoryCards = [];
+    let reviewQueue = [];
     let currentQuizWord = null;
     let currentWritingWord = null;
-    let currentMistakeReview = null;
+    let currentReviewMistake = null;
     let quizCorrect = 0, quizAttempts = 0;
     let writingCorrect = 0, writingAttempts = 0;
-    let quizMistakes = [];
-    let writingMistakes = [];
+    let reviewCorrect = 0, reviewAttempts = 0;
     let quizActive = false;
     let writingActive = false;
     let memoryActive = false;
+    let reviewActive = false;
     let memoryMoves = 0;
     let memoryMatched = 0;
     let memoryStartTime = 0;
@@ -653,18 +703,13 @@
     const endQuizBtn = document.getElementById('end-quiz');
     const optsCount = document.getElementById('optionsCount');
     const exerciseLimit = document.getElementById('exerciseLimit');
-    const mistakesToRemove = document.getElementById('mistakesToRemove');
     const themeColor = document.getElementById('themeColor');
     const spellingTolerance = document.getElementById('spellingTolerance');
-    const autoShowAnswer = document.getElementById('autoShowAnswer');
     const quizOptsEl = document.getElementById('quiz-opts');
     const quizPromptEl = document.getElementById('quiz-prompt');
     const quizScoreEl = document.getElementById('quiz-score');
     const quizRemainingEl = document.getElementById('quiz-remaining');
     const quizAccuracyEl = document.getElementById('quiz-accuracy');
-    const quizMistakesContainer = document.getElementById('quiz-mistakes-container');
-    const quizMistakesList = document.getElementById('quiz-mistakes-list');
-    const quizMistakesCount = document.getElementById('quiz-mistakes-count');
     
     // Writing elements
     const startWritingBtn = document.getElementById('start-writing');
@@ -679,9 +724,6 @@
     const writingScoreEl = document.getElementById('writing-score');
     const writingRemainingEl = document.getElementById('writing-remaining');
     const writingAccuracyEl = document.getElementById('writing-accuracy');
-    const writingMistakesContainer = document.getElementById('writing-mistakes-container');
-    const writingMistakesList = document.getElementById('writing-mistakes-list');
-    const writingMistakesCount = document.getElementById('writing-mistakes-count');
     
     // Memory game elements
     const startMemoryBtn = document.getElementById('start-memory');
@@ -694,23 +736,36 @@
     const finalMovesEl = document.getElementById('final-moves');
     const finalTimeEl = document.getElementById('final-time');
     
-    // Mistakes review elements
-    const mistakesListContainer = document.getElementById('mistakes-list-container');
-    const noMistakesEl = document.getElementById('no-mistakes');
+    // Mistake review elements
+    const mistakeReviewExercise = document.getElementById('mistake-review-exercise');
+    const noMistakesReview = document.getElementById('no-mistakes-review');
+    const reviewComplete = document.getElementById('review-complete');
     const totalMistakesEl = document.getElementById('total-mistakes');
-    const correctedMistakesEl = document.getElementById('corrected-mistakes');
-    const accuracyMistakesEl = document.getElementById('accuracy-mistakes');
-    const startMistakesReviewBtn = document.getElementById('start-mistakes-review');
-    const clearCorrectedMistakesBtn = document.getElementById('clear-corrected-mistakes');
-    const clearAllMistakesBtn = document.getElementById('clear-all-mistakes');
+    const remainingMistakesEl = document.getElementById('remaining-mistakes');
+    const reviewAccuracyEl = document.getElementById('review-accuracy');
+    const startReviewBtn = document.getElementById('start-review');
+    const clearMistakesBtn = document.getElementById('clear-mistakes');
+    const reviewTypeEl = document.getElementById('review-type');
+    const reviewProgressEl = document.getElementById('review-progress');
+    const reviewQuestionEl = document.getElementById('review-question');
+    const reviewQuizOptions = document.getElementById('review-quiz-options');
+    const reviewWritingInput = document.getElementById('review-writing-input');
+    const reviewAnswerInput = document.getElementById('review-answer-input');
+    const reviewFeedback = document.getElementById('review-feedback');
+    const reviewPreviousAnswer = document.getElementById('review-previous-answer');
+    const reviewCorrectAnswerEl = document.getElementById('review-correct-answer');
+    const reviewWrongAnswerEl = document.getElementById('review-wrong-answer');
+    const reviewOptsEl = document.getElementById('review-opts');
+    const checkReviewAnswerBtn = document.getElementById('check-review-answer');
+    const nextMistakeBtn = document.getElementById('next-mistake');
+    const showReviewAnswerBtn = document.getElementById('show-review-answer');
+    const endReviewBtn = document.getElementById('end-review');
+    const finalReviewAccuracy = document.getElementById('final-review-accuracy');
     
     // Navigation
     const navBtns = document.querySelectorAll('.nav-btn');
     const pages = document.querySelectorAll('.page');
     const exerciseBtns = document.querySelectorAll('.exercise-btn');
-    const backToExercisesQuizBtn = document.getElementById('back-to-exercises-quiz');
-    const backToExercisesWritingBtn = document.getElementById('back-to-exercises-writing');
-    const backToExercisesMemoryBtn = document.getElementById('back-to-exercises-memory');
     
     // File input
     const fileInput = document.getElementById('fileInput');
@@ -723,45 +778,7 @@
       document.getElementById('usePron').checked = settings.usePron !== false;
       exerciseLimit.value = settings.exerciseLimit || 20;
       spellingTolerance.checked = settings.spellingTolerance !== false;
-      autoShowAnswer.checked = settings.autoShowAnswer || false;
-      mistakesToRemove.value = settings.mistakesToRemove || 2;
-      themeColor.value = settings.themeColor || '#ff0b0b';
-      updateTheme();
-    }
-
-    function updateTheme() {
-      const root = document.documentElement;
-      root.style.setProperty('--red', settings.themeColor);
-      root.style.setProperty('--red-light', lightenColor(settings.themeColor, 30));
-      root.style.setProperty('--dark-red', darkenColor(settings.themeColor, 40));
-    }
-
-    function lightenColor(color, percent) {
-      const num = parseInt(color.replace('#', ''), 16);
-      const amt = Math.round(2.55 * percent);
-      const R = (num >> 16) + amt;
-      const G = (num >> 8 & 0x00FF) + amt;
-      const B = (num & 0x0000FF) + amt;
-      return '#' + (
-        0x1000000 +
-        (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
-        (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
-        (B < 255 ? B < 1 ? 0 : B : 255)
-      ).toString(16).slice(1);
-    }
-
-    function darkenColor(color, percent) {
-      const num = parseInt(color.replace('#', ''), 16);
-      const amt = Math.round(2.55 * percent);
-      const R = (num >> 16) - amt;
-      const G = (num >> 8 & 0x00FF) - amt;
-      const B = (num & 0x0000FF) - amt;
-      return '#' + (
-        0x1000000 +
-        (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
-        (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
-        (B < 255 ? B < 1 ? 0 : B : 255)
-      ).toString(16).slice(1);
+      updateMistakeReviewUI();
     }
 
     // Save settings
@@ -770,22 +787,18 @@
       settings.usePron = document.getElementById('usePron').checked;
       settings.exerciseLimit = parseInt(exerciseLimit.value);
       settings.spellingTolerance = spellingTolerance.checked;
-      settings.autoShowAnswer = autoShowAnswer.checked;
-      settings.mistakesToRemove = parseInt(mistakesToRemove.value);
-      settings.themeColor = themeColor.value;
       localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
-      updateTheme();
     }
 
     // Save mistakes
     function saveMistakes() {
       localStorage.setItem(MISTAKES_KEY, JSON.stringify(mistakes));
-      updateMistakesStats();
-      renderMistakesList();
+      updateMistakeReviewUI();
     }
 
     // Add a mistake
     function addMistake(exerciseType, question, correctAnswer, wrongAnswer) {
+      // Create the mistake
       const mistake = {
         id: Date.now() + Math.random(),
         type: exerciseType,
@@ -793,96 +806,255 @@
         correct: correctAnswer,
         wrong: wrongAnswer,
         date: new Date().toISOString(),
-        correctedCount: 0,
-        needsCorrectCount: settings.mistakesToRemove || 2,
-        lastAttempt: null
+        reviewed: false
       };
       
-      // Check if similar mistake already exists
-      const existingIndex = mistakes.findIndex(m => 
-        m.type === exerciseType && 
-        m.question === question && 
-        m.correct === correctAnswer
-      );
+      // Add to mistakes array
+      mistakes.push(mistake);
       
-      if (existingIndex !== -1) {
-        // Update existing mistake
-        mistakes[existingIndex].wrong = wrongAnswer;
-        mistakes[existingIndex].date = new Date().toISOString();
-        mistakes[existingIndex].correctedCount = 0;
-        mistakes[existingIndex].lastAttempt = 'wrong';
-      } else {
-        // Add new mistake
-        mistakes.push(mistake);
+      // Keep only last 100 mistakes to avoid too much storage
+      if (mistakes.length > 100) {
+        mistakes = mistakes.slice(-100);
       }
       
       saveMistakes();
     }
 
-    // Update mistake stats
-    function updateMistakesStats() {
+    // Update mistake review UI
+    function updateMistakeReviewUI() {
       const total = mistakes.length;
-      const corrected = mistakes.filter(m => m.correctedCount >= m.needsCorrectCount).length;
-      const accuracy = total > 0 ? Math.round((corrected / total) * 100) : 0;
+      const remaining = mistakes.filter(m => !m.reviewed).length;
+      const accuracy = reviewAttempts > 0 ? Math.round((reviewCorrect / reviewAttempts) * 100) : 0;
       
       totalMistakesEl.textContent = total;
-      correctedMistakesEl.textContent = corrected;
-      accuracyMistakesEl.textContent = `${accuracy}%`;
+      remainingMistakesEl.textContent = remaining;
+      reviewAccuracyEl.textContent = `${accuracy}%`;
       
       if (total === 0) {
-        noMistakesEl.style.display = 'block';
-        mistakesListContainer.innerHTML = '';
-        startMistakesReviewBtn.style.display = 'none';
+        noMistakesReview.style.display = 'block';
+        mistakeReviewExercise.style.display = 'none';
+        reviewComplete.style.display = 'none';
+        startReviewBtn.style.display = 'none';
+      } else if (reviewActive) {
+        noMistakesReview.style.display = 'none';
+        mistakeReviewExercise.style.display = 'block';
+        reviewComplete.style.display = 'none';
+        startReviewBtn.style.display = 'none';
+      } else if (remaining === 0 && total > 0) {
+        noMistakesReview.style.display = 'none';
+        mistakeReviewExercise.style.display = 'none';
+        reviewComplete.style.display = 'block';
+        startReviewBtn.style.display = 'inline-block';
       } else {
-        noMistakesEl.style.display = 'none';
-        startMistakesReviewBtn.style.display = 'inline-block';
+        noMistakesReview.style.display = 'none';
+        mistakeReviewExercise.style.display = 'none';
+        reviewComplete.style.display = 'none';
+        startReviewBtn.style.display = 'inline-block';
       }
     }
 
-    // Render mistakes list
-    function renderMistakesList() {
-      mistakesListContainer.innerHTML = '';
+    // Start mistake review
+    function startMistakeReview() {
+      if (mistakes.length === 0) {
+        alert('لا توجد أخطاء للمراجعة');
+        return;
+      }
       
-      if (mistakes.length === 0) return;
+      // Get unreviewed mistakes
+      reviewQueue = mistakes.filter(m => !m.reviewed);
       
-      // Sort by date (newest first)
-      const sortedMistakes = [...mistakes].sort((a, b) => new Date(b.date) - new Date(a.date));
+      if (reviewQueue.length === 0) {
+        // If all reviewed, review all mistakes again
+        reviewQueue = [...mistakes];
+        // Reset reviewed status
+        mistakes.forEach(m => m.reviewed = false);
+        saveMistakes();
+      }
       
-      sortedMistakes.forEach((mistake, index) => {
-        const isCorrected = mistake.correctedCount >= mistake.needsCorrectCount;
-        const exerciseDiv = document.createElement('div');
-        exerciseDiv.className = `mistake-exercise ${isCorrected ? 'corrected' : ''}`;
+      // Shuffle the review queue
+      reviewQueue = shuffle(reviewQueue);
+      
+      reviewActive = true;
+      reviewCorrect = 0;
+      reviewAttempts = 0;
+      
+      // Reset UI
+      reviewQuizOptions.style.display = 'none';
+      reviewWritingInput.style.display = 'none';
+      reviewPreviousAnswer.style.display = 'none';
+      checkReviewAnswerBtn.style.display = 'inline-block';
+      nextMistakeBtn.style.display = 'none';
+      showReviewAnswerBtn.style.display = 'inline-block';
+      reviewFeedback.textContent = '';
+      reviewFeedback.className = 'mistake-review-feedback';
+      reviewAnswerInput.value = '';
+      
+      updateMistakeReviewUI();
+      nextReviewQuestion();
+    }
+
+    // Next review question
+    function nextReviewQuestion() {
+      if (reviewQueue.length === 0) {
+        endMistakeReview();
+        return;
+      }
+      
+      currentReviewMistake = reviewQueue.pop();
+      
+      // Update UI based on mistake type
+      reviewProgressEl.textContent = `${reviewAttempts + 1}/${reviewAttempts + reviewQueue.length + 1}`;
+      reviewQuestionEl.textContent = currentReviewMistake.question;
+      reviewCorrectAnswerEl.textContent = currentReviewMistake.correct;
+      reviewWrongAnswerEl.textContent = currentReviewMistake.wrong;
+      
+      // Show previous answer
+      reviewPreviousAnswer.style.display = 'flex';
+      
+      if (currentReviewMistake.type === 'quiz') {
+        reviewTypeEl.textContent = '❓ اختبار متعدد';
+        reviewTypeEl.style.background = 'rgba(255,11,11,0.2)';
         
-        const typeLabels = {
-          'quiz': '❓ اختبار متعدد',
-          'writing': '✍️ كتابة',
-          'memory': '🎴 لعبة الذاكرة'
-        };
+        // Create quiz options
+        reviewQuizOptions.style.display = 'block';
+        reviewWritingInput.style.display = 'none';
         
-        exerciseDiv.innerHTML = `
-          <div class="mistake-meta">
-            <span class="mistake-type">${typeLabels[mistake.type] || mistake.type}</span>
-            <span>${new Date(mistake.date).toLocaleDateString('ar-SA')}</span>
-          </div>
-          <div style="margin-bottom:10px">
-            <strong style="color:#ffcccc">${escapeHtml(mistake.question)}</strong>
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px">
-            <div>
-              <div style="color:#19b56b;font-size:14px">✅ ${escapeHtml(mistake.correct)}</div>
-              <div style="color:#ff4d4d;font-size:14px">❌ ${escapeHtml(mistake.wrong)}</div>
-            </div>
-            <div style="text-align:center">
-              <div style="font-size:12px;color:var(--muted)">التقدم</div>
-              <div style="font-size:16px;color:#ffcccc">
-                ${mistake.correctedCount}/${mistake.needsCorrectCount}
-              </div>
-            </div>
-          </div>
-        `;
+        const numOpts = Math.max(2, Math.min(6, parseInt(optsCount.value) || 4));
+        const choices = buildChoices(currentReviewMistake.correct, numOpts, words.map(w => w.german));
+        renderReviewOptions(choices);
         
-        mistakesListContainer.appendChild(exerciseDiv);
+      } else if (currentReviewMistake.type === 'writing') {
+        reviewTypeEl.textContent = '✍️ كتابة';
+        reviewTypeEl.style.background = 'rgba(255,165,0,0.2)';
+        
+        reviewQuizOptions.style.display = 'none';
+        reviewWritingInput.style.display = 'block';
+        reviewAnswerInput.disabled = false;
+        reviewAnswerInput.focus();
+      }
+    }
+
+    // Build choices for quiz
+    function buildChoices(correctGerman, num, wordPool){
+      const pool = wordPool.filter(g => g !== correctGerman);
+      const choices = [correctGerman];
+      
+      while(choices.length < num && pool.length){
+        const i = Math.floor(Math.random() * pool.length); 
+        choices.push(pool.splice(i,1)[0]);
+      }
+      
+      while(choices.length < num) choices.push(correctGerman);
+      return shuffle(choices);
+    }
+
+    // Render review options
+    function renderReviewOptions(choices){
+      reviewOptsEl.innerHTML='';
+      choices.forEach(c => {
+        const opt = document.createElement('div');
+        opt.className = 'quiz-option';
+        opt.textContent = c;
+        opt.onclick = () => reviewAnswer(c, opt);
+        reviewOptsEl.appendChild(opt);
       });
+    }
+
+    // Review answer handler
+    function reviewAnswer(choice, el) {
+      if (el.classList.contains('correct') || el.classList.contains('wrong')) return;
+      
+      reviewAttempts++;
+      const allOptions = document.querySelectorAll('#review-opts .quiz-option');
+      
+      if (choice === currentReviewMistake.correct) {
+        reviewCorrect++;
+        el.classList.add('correct');
+        currentReviewMistake.reviewed = true;
+        
+        setTimeout(() => {
+          allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+          setTimeout(nextReviewQuestion, 800);
+        }, 300);
+      } else {
+        el.classList.add('wrong');
+        
+        // Highlight correct answer
+        allOptions.forEach(opt => {
+          if (opt.textContent === currentReviewMistake.correct) {
+            opt.classList.add('correct');
+          }
+          opt.style.pointerEvents = 'none';
+        });
+        
+        setTimeout(() => {
+          allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+          checkReviewAnswerBtn.style.display = 'none';
+          nextMistakeBtn.style.display = 'inline-block';
+        }, 300);
+      }
+      
+      saveMistakes();
+      updateMistakeReviewUI();
+    }
+
+    // Check writing review answer
+    function checkReviewWritingAnswer() {
+      const userAnswer = reviewAnswerInput.value.trim();
+      if (!userAnswer) {
+        reviewFeedback.textContent = 'الرجاء إدخال إجابة أولاً';
+        reviewFeedback.className = 'mistake-review-feedback';
+        return;
+      }
+      
+      reviewAttempts++;
+      reviewAnswerInput.disabled = true;
+      
+      const correctAnswer = currentReviewMistake.correct;
+      const normalizedUserAnswer = normalizeText(userAnswer);
+      const normalizedCorrectAnswer = normalizeText(correctAnswer);
+      
+      // Check if answer is correct
+      let isCorrect = false;
+      if (spellingTolerance.checked) {
+        isCorrect = normalizedUserAnswer === normalizedCorrectAnswer ||
+                   Math.abs(normalizedUserAnswer.length - normalizedCorrectAnswer.length) <= 2;
+        
+        if (!isCorrect) {
+          const distance = levenshteinDistance(normalizedUserAnswer, normalizedCorrectAnswer);
+          isCorrect = distance <= 1;
+        }
+      } else {
+        isCorrect = normalizedUserAnswer === normalizedCorrectAnswer;
+      }
+      
+      if (isCorrect) {
+        reviewCorrect++;
+        reviewFeedback.innerHTML = `<div style="color:#19b56b">✅ صحيح!</div>`;
+        reviewFeedback.className = 'mistake-review-feedback';
+        currentReviewMistake.reviewed = true;
+        
+        setTimeout(() => {
+          nextReviewQuestion();
+        }, 1000);
+      } else {
+        reviewFeedback.innerHTML = `<div style="color:#ff4d4d">❌ غير صحيح</div>`;
+        reviewFeedback.className = 'mistake-review-feedback';
+        
+        checkReviewAnswerBtn.style.display = 'none';
+        nextMistakeBtn.style.display = 'inline-block';
+      }
+      
+      saveMistakes();
+      updateMistakeReviewUI();
+    }
+
+    // End mistake review
+    function endMistakeReview() {
+      reviewActive = false;
+      const accuracy = reviewAttempts > 0 ? Math.round((reviewCorrect / reviewAttempts) * 100) : 0;
+      finalReviewAccuracy.textContent = `${accuracy}%`;
+      updateMistakeReviewUI();
     }
 
     // Navigation
@@ -908,11 +1080,13 @@
         if (pageId !== 'memory' && memoryActive) {
           stopMemoryGame();
         }
+        if (pageId !== 'mistakes' && reviewActive) {
+          endMistakeReview();
+        }
         
         // Update mistakes page if needed
         if (pageId === 'mistakes') {
-          updateMistakesStats();
-          renderMistakesList();
+          updateMistakeReviewUI();
         }
       });
     });
@@ -923,19 +1097,6 @@
         const exercise = btn.dataset.exercise;
         document.querySelector(`[data-page="${exercise}"]`).click();
       });
-    });
-
-    // Back to exercises
-    backToExercisesQuizBtn.addEventListener('click', () => {
-      document.querySelector('[data-page="exercises"]').click();
-    });
-
-    backToExercisesWritingBtn.addEventListener('click', () => {
-      document.querySelector('[data-page="exercises"]').click();
-    });
-
-    backToExercisesMemoryBtn.addEventListener('click', () => {
-      document.querySelector('[data-page="exercises"]').click();
     });
 
     // ===== EDITOR FUNCTIONS =====
@@ -1125,7 +1286,6 @@
       quizActive = true;
       quizCorrect = 0; 
       quizAttempts = 0; 
-      quizMistakes = [];
       
       const limit = parseInt(exerciseLimit.value) || 20;
       const quizWords = words.slice(-limit);
@@ -1141,7 +1301,6 @@
       startQuizBtn.style.display = 'none';
       nextQuizBtn.style.display = 'inline-block';
       endQuizBtn.style.display = 'inline-block';
-      quizMistakesContainer.style.display = 'none';
       
       nextQuizQuestion();
     }
@@ -1153,12 +1312,12 @@
       }
       
       currentQuizWord = quizQueue.pop();
-      quizPromptEl.innerHTML = `ما هي الكلمة الألمانية لـ:<br><strong style="color:#ffcccc;font-size:24px;margin-top:10px;display:block">${escapeHtml(currentQuizWord.english)}</strong>`;
+      quizPromptEl.innerHTML = `ما هي الكلمة الألمانية لـ:<br><strong style="color:#ffcccc;font-size:20px;margin-top:8px;display:block">${escapeHtml(currentQuizWord.english)}</strong>`;
       
       const numOpts = Math.max(2, Math.min(6, parseInt(optsCount.value) || 4));
       const limit = parseInt(exerciseLimit.value) || 20;
       const quizWords = words.slice(-limit);
-      const choices = buildChoices(currentQuizWord.german, numOpts, quizWords);
+      const choices = buildChoices(currentQuizWord.german, numOpts, quizWords.map(w => w.german));
       renderQuizOptions(choices);
       
       if(document.getElementById('usePron').checked) {
@@ -1166,19 +1325,6 @@
       }
       
       updateQuizStats();
-    }
-
-    function buildChoices(correctGerman, num, wordPool){
-      const pool = wordPool.map(w => w.german).filter(g => g !== correctGerman);
-      const choices = [correctGerman];
-      
-      while(choices.length < num && pool.length){
-        const i = Math.floor(Math.random() * pool.length); 
-        choices.push(pool.splice(i,1)[0]);
-      }
-      
-      while(choices.length < num) choices.push(correctGerman);
-      return shuffle(choices);
     }
 
     function renderQuizOptions(choices){
@@ -1210,11 +1356,6 @@
         
         // Record mistake
         addMistake('quiz', currentQuizWord.english, currentQuizWord.german, choice);
-        quizMistakes.push({
-          question: currentQuizWord.english,
-          correct: currentQuizWord.german,
-          wrong: choice
-        });
         
         // Highlight correct answer
         allOptions.forEach(opt => {
@@ -1224,7 +1365,10 @@
           opt.style.pointerEvents = 'none';
         });
         
-        setTimeout(nextQuizQuestion, 1200);
+        setTimeout(() => {
+          allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+          setTimeout(nextQuizQuestion, 800);
+        }, 1200);
       } 
       
       updateQuizStats();
@@ -1235,10 +1379,10 @@
       
       quizPromptEl.innerHTML = `
         <div style="text-align:center">
-          <div style="font-size:48px">${quizCorrect === quizAttempts ? '🎉' : '📊'}</div>
-          <div style="font-size:24px;color:#ffcccc;margin:10px 0">الاختبار انتهى!</div>
-          <div style="font-size:18px;color:var(--muted)">${quizCorrect} من ${quizAttempts} إجابة صحيحة</div>
-          <div style="font-size:16px;color:#19b56b;margin-top:10px">الدقة: ${quizAttempts > 0 ? Math.round((quizCorrect / quizAttempts) * 100) : 0}%</div>
+          <div style="font-size:36px">${quizCorrect === quizAttempts ? '🎉' : '📊'}</div>
+          <div style="font-size:20px;color:#ffcccc;margin:8px 0">الاختبار انتهى!</div>
+          <div style="font-size:16px;color:var(--muted)">${quizCorrect} من ${quizAttempts} إجابة صحيحة</div>
+          <div style="font-size:14px;color:#19b56b;margin-top:8px">الدقة: ${quizAttempts > 0 ? Math.round((quizCorrect / quizAttempts) * 100) : 0}%</div>
         </div>
       `;
       
@@ -1247,27 +1391,6 @@
       startQuizBtn.style.display = 'inline-block';
       nextQuizBtn.style.display = 'none';
       endQuizBtn.style.display = 'none';
-      
-      // Show mistakes if any
-      if(quizMistakes.length > 0) {
-        quizMistakesContainer.style.display = 'block';
-        quizMistakesCount.textContent = quizMistakes.length;
-        
-        let mistakesHtml = '';
-        quizMistakes.forEach((m, i) => {
-          mistakesHtml += `
-            <div class="mistake-item">
-              <div class="mistake-question">${i+1}. ${escapeHtml(m.question)}</div>
-              <div class="mistake-answer">
-                <span class="correct-answer">✅ ${escapeHtml(m.correct)}</span>
-                <span class="wrong-answer">❌ ${escapeHtml(m.wrong)}</span>
-              </div>
-            </div>
-          `;
-        });
-        
-        quizMistakesList.innerHTML = mistakesHtml;
-      }
       
       updateQuizStats();
     }
@@ -1301,7 +1424,6 @@
       writingActive = true;
       writingCorrect = 0; 
       writingAttempts = 0; 
-      writingMistakes = [];
       
       const limit = parseInt(exerciseLimit.value) || 20;
       const writingWords = words.slice(-limit);
@@ -1319,7 +1441,6 @@
       nextWritingBtn.style.display = 'none';
       showAnswerBtn.style.display = 'inline-block';
       endWritingBtn.style.display = 'inline-block';
-      writingMistakesContainer.style.display = 'none';
       writingInput.disabled = false;
       writingInput.focus();
       
@@ -1333,7 +1454,7 @@
       }
       
       currentWritingWord = writingQueue.pop();
-      writingPromptEl.innerHTML = `اكتب الكلمة الألمانية لـ:<br><strong style="color:#ffcccc;font-size:28px;margin-top:10px;display:block">${escapeHtml(currentWritingWord.english)}</strong>`;
+      writingPromptEl.innerHTML = `اكتب الكلمة الألمانية لـ:<br><strong style="color:#ffcccc;font-size:22px;margin-top:8px;display:block">${escapeHtml(currentWritingWord.english)}</strong>`;
       writingHintEl.textContent = 'اكتب الكلمة الألمانية في الحقل أدناه ثم اضغط على "تحقق" أو اضغط Enter';
       
       writingInput.value = '';
@@ -1396,8 +1517,8 @@
       if (isCorrect) {
         writingCorrect++;
         writingFeedback.innerHTML = `
-          <div style="font-size:24px">✅ صحيح!</div>
-          <div style="margin-top:10px;font-size:18px">"${escapeHtml(correctAnswer)}" هي الإجابة الصحيحة</div>
+          <div style="font-size:20px">✅ صحيح!</div>
+          <div style="margin-top:8px;font-size:16px">"${escapeHtml(correctAnswer)}" هي الإجابة الصحيحة</div>
         `;
         writingFeedback.className = 'writing-feedback correct';
         
@@ -1411,24 +1532,19 @@
         }, 1500);
       } else {
         writingFeedback.innerHTML = `
-          <div style="font-size:24px">❌ غير صحيح</div>
-          <div style="margin-top:10px;font-size:16px">إجابتك: "${escapeHtml(userAnswer)}"</div>
+          <div style="font-size:20px">❌ غير صحيح</div>
+          <div style="margin-top:8px;font-size:14px">إجابتك: "${escapeHtml(userAnswer)}"</div>
         `;
         writingFeedback.className = 'writing-feedback incorrect';
         
         // Record mistake
         addMistake('writing', currentWritingWord.english, currentWritingWord.german, userAnswer);
-        writingMistakes.push({
-          question: currentWritingWord.english,
-          correct: currentWritingWord.german,
-          wrong: userAnswer
-        });
         
         checkAnswerBtn.style.display = 'none';
         nextWritingBtn.style.display = 'inline-block';
         
         // Auto show answer if enabled
-        if (autoShowAnswer.checked) {
+        if (document.getElementById('usePron').checked) {
           setTimeout(showWritingAnswer, 1000);
         }
       }
@@ -1440,9 +1556,9 @@
       if (!currentWritingWord) return;
       
       writingFeedback.innerHTML = `
-        <div style="font-size:20px">👁️ الإجابة الصحيحة:</div>
+        <div style="font-size:18px">👁️ الإجابة الصحيحة:</div>
         <div class="writing-answer">${escapeHtml(currentWritingWord.german)}</div>
-        <div style="margin-top:10px;font-size:14px;color:#ffcccc">معنى: ${escapeHtml(currentWritingWord.english)}</div>
+        <div style="margin-top:8px;font-size:13px;color:#ffcccc">معنى: ${escapeHtml(currentWritingWord.english)}</div>
       `;
       writingFeedback.className = 'writing-feedback show-answer';
       
@@ -1457,10 +1573,10 @@
       
       writingPromptEl.innerHTML = `
         <div style="text-align:center">
-          <div style="font-size:48px">${writingCorrect === writingAttempts ? '🎉' : '📊'}</div>
-          <div style="font-size:24px;color:#ffcccc;margin:10px 0">تم الانتهاء من تمرين الكتابة!</div>
-          <div style="font-size:18px;color:var(--muted)">${writingCorrect} من ${writingAttempts} إجابة صحيحة</div>
-          <div style="font-size:16px;color:#19b56b;margin-top:10px">الدقة: ${writingAttempts > 0 ? Math.round((writingCorrect / writingAttempts) * 100) : 0}%</div>
+          <div style="font-size:36px">${writingCorrect === writingAttempts ? '🎉' : '📊'}</div>
+          <div style="font-size:20px;color:#ffcccc;margin:8px 0">تم الانتهاء من تمرين الكتابة!</div>
+          <div style="font-size:16px;color:var(--muted)">${writingCorrect} من ${writingAttempts} إجابة صحيحة</div>
+          <div style="font-size:14px;color:#19b56b;margin-top:8px">الدقة: ${writingAttempts > 0 ? Math.round((writingCorrect / writingAttempts) * 100) : 0}%</div>
         </div>
       `;
       
@@ -1476,31 +1592,10 @@
       showAnswerBtn.style.display = 'none';
       endWritingBtn.style.display = 'none';
       
-      // Show mistakes if any
-      if(writingMistakes.length > 0) {
-        writingMistakesContainer.style.display = 'block';
-        writingMistakesCount.textContent = writingMistakes.length;
-        
-        let mistakesHtml = '';
-        writingMistakes.forEach((m, i) => {
-          mistakesHtml += `
-            <div class="mistake-item">
-              <div class="mistake-question">${i+1}. ${escapeHtml(m.question)}</div>
-              <div class="mistake-answer">
-                <span class="correct-answer">✅ ${escapeHtml(m.correct)}</span>
-                <span class="wrong-answer">❌ ${escapeHtml(m.wrong)}</span>
-              </div>
-            </div>
-          `;
-        });
-        
-        writingMistakesList.innerHTML = mistakesHtml;
-      }
-      
       updateWritingStats();
     }
 
-    // ===== MEMORY GAME FUNCTIONS - FIXED FLIP ANIMATION =====
+    // ===== MEMORY GAME FUNCTIONS - USES LAST 8 WORDS =====
     startMemoryBtn.addEventListener('click', startMemoryGame);
     restartMemoryBtn.addEventListener('click', restartMemoryGame);
     
@@ -1518,9 +1613,17 @@
       flippedCards = [];
       canFlip = true;
       
-      // Use 8 cards (4 pairs) or fewer if not enough words
-      const maxPairs = Math.min(8, Math.floor(words.length));
-      const gameWords = shuffle([...words]).slice(0, maxPairs);
+      // Use the last 8 words (4 pairs)
+      const lastWords = words.slice(-8);
+      
+      if (lastWords.length < 4) {
+        alert('تحتاج إلى 4 كلمات على الأقل في آخر 8 كلمات');
+        return;
+      }
+      
+      // Use exactly 4 pairs from the last 8 words
+      // If we have less than 8 words, use all available words
+      const gameWords = lastWords.length >= 8 ? lastWords.slice(-8) : lastWords;
       
       // Create card pairs (German-English)
       memoryCards = [];
@@ -1540,6 +1643,11 @@
           matched: false
         });
       });
+      
+      // If we have odd number of words, remove one pair to make it even
+      if (memoryCards.length % 2 !== 0) {
+        memoryCards.pop();
+      }
       
       memoryCards = shuffle(memoryCards);
       
@@ -1587,7 +1695,7 @@
       memoryGrid.innerHTML = '';
       
       if (memoryCards.length === 0) {
-        memoryGrid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)">لا توجد كلمات كافية للعبة</div>';
+        memoryGrid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--muted);font-size:14px">لا توجد كلمات كافية للعبة (تحتاج 4 كلمات على الأقل)</div>';
         return;
       }
       
@@ -1697,24 +1805,50 @@
       memoryComplete.style.display = 'block';
     }
 
-    // ===== MISTAKES REVIEW FUNCTIONS =====
-    clearCorrectedMistakesBtn.addEventListener('click', () => {
-      if (confirm('هل تريد مسح جميع الأخطاء المصححة؟')) {
-        mistakes = mistakes.filter(m => m.correctedCount < m.needsCorrectCount);
-        saveMistakes();
-      }
-    });
-    
-    clearAllMistakesBtn.addEventListener('click', () => {
-      if (confirm('هل تريد مسح جميع الأخطاء؟ سيتم فقدان جميع بيانات المراجعة.')) {
+    // ===== MISTAKE REVIEW EVENT LISTENERS =====
+    startReviewBtn.addEventListener('click', startMistakeReview);
+    clearMistakesBtn.addEventListener('click', () => {
+      if (confirm('هل تريد مسح جميع الأخطاء؟')) {
         mistakes = [];
         saveMistakes();
       }
     });
     
-    startMistakesReviewBtn.addEventListener('click', () => {
-      // This would start a review session using the mistakes
-      alert('ميزة مراجعة الأخطاء التفصيلية قيد التطوير. يمكنك رؤية جميع أخطائك في القائمة أعلاه.');
+    checkReviewAnswerBtn.addEventListener('click', () => {
+      if (currentReviewMistake.type === 'writing') {
+        checkReviewWritingAnswer();
+      }
+    });
+    
+    nextMistakeBtn.addEventListener('click', () => {
+      nextReviewQuestion();
+    });
+    
+    showReviewAnswerBtn.addEventListener('click', () => {
+      if (currentReviewMistake.type === 'quiz') {
+        const allOptions = document.querySelectorAll('#review-opts .quiz-option');
+        allOptions.forEach(opt => {
+          if (opt.textContent === currentReviewMistake.correct) {
+            opt.classList.add('correct');
+          }
+          opt.style.pointerEvents = 'none';
+        });
+        checkReviewAnswerBtn.style.display = 'none';
+        nextMistakeBtn.style.display = 'inline-block';
+      } else if (currentReviewMistake.type === 'writing') {
+        reviewAnswerInput.value = currentReviewMistake.correct;
+        reviewAnswerInput.disabled = true;
+        checkReviewAnswerBtn.style.display = 'none';
+        nextMistakeBtn.style.display = 'inline-block';
+      }
+    });
+    
+    endReviewBtn.addEventListener('click', endMistakeReview);
+    
+    reviewAnswerInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && reviewActive) {
+        checkReviewWritingAnswer();
+      }
     });
 
     // ===== UTILITY FUNCTIONS =====
@@ -1760,9 +1894,6 @@
     optsCount.addEventListener('change', saveSettings);
     exerciseLimit.addEventListener('change', saveSettings);
     spellingTolerance.addEventListener('change', saveSettings);
-    autoShowAnswer.addEventListener('change', saveSettings);
-    mistakesToRemove.addEventListener('change', saveSettings);
-    themeColor.addEventListener('change', saveSettings);
 
     document.getElementById('reset-settings').addEventListener('click', () => {
       if(confirm('هل تريد إعادة تعيين جميع الإعدادات؟')){
@@ -1770,10 +1901,7 @@
           optionsCount:4, 
           usePron:true, 
           exerciseLimit:20, 
-          spellingTolerance:true,
-          autoShowAnswer:false,
-          mistakesToRemove:2,
-          themeColor:'#ff0b0b'
+          spellingTolerance:true
         };
         localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
         initSettings();
@@ -1786,7 +1914,7 @@
         words: words,
         settings: settings,
         mistakes: mistakes,
-        version: '4.0',
+        version: '6.0',
         exportDate: new Date().toISOString()
       };
       
@@ -1827,8 +1955,7 @@
     renderList();
     updateQuizStats();
     updateWritingStats();
-    updateMistakesStats();
-    renderMistakesList();
+    updateMistakeReviewUI();
   </script>
 </body>
 </html>
