@@ -345,6 +345,109 @@
     .exercise-btn .title{font-size:18px;color:#ffcccc;font-weight:bold;margin-bottom:8px}
     .exercise-btn .desc{font-size:13px;color:var(--muted)}
     
+    /* Word selection modal */
+    .word-selection-modal{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.8);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:1000;
+      padding:20px;
+    }
+    
+    .word-selection-container{
+      background:linear-gradient(180deg, var(--black), var(--dark-red));
+      border-radius:12px;
+      padding:25px;
+      max-width:800px;
+      width:100%;
+      max-height:90vh;
+      overflow-y:auto;
+      border:2px solid var(--red);
+      box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    }
+    
+    .word-selection-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+      padding-bottom:15px;
+      border-bottom:2px solid rgba(255,11,11,0.3);
+    }
+    
+    .word-selection-list{
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+      gap:10px;
+      margin:20px 0;
+      max-height:400px;
+      overflow-y:auto;
+      padding:10px;
+      background:rgba(0,0,0,0.2);
+      border-radius:8px;
+    }
+    
+    .word-selection-item{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px;
+      background:rgba(255,11,11,0.05);
+      border-radius:6px;
+      cursor:pointer;
+      transition:all 0.2s;
+      border:1px solid rgba(255,255,255,0.05);
+    }
+    
+    .word-selection-item:hover{
+      background:rgba(255,11,11,0.1);
+      transform:translateY(-2px);
+    }
+    
+    .word-selection-item.selected{
+      background:rgba(25,181,107,0.1);
+      border-color:var(--green);
+    }
+    
+    .word-selection-item input{
+      margin:0;
+    }
+    
+    .word-selection-text{
+      flex-grow:1;
+    }
+    
+    .word-selection-german{
+      color:#ffebeb;
+      font-weight:500;
+      font-size:14px;
+    }
+    
+    .word-selection-english{
+      color:var(--muted);
+      font-size:12px;
+    }
+    
+    .word-selection-controls{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:20px;
+      padding-top:20px;
+      border-top:1px solid rgba(255,255,255,0.1);
+    }
+    
+    .word-selection-stats{
+      color:#ffcccc;
+      font-size:14px;
+    }
+    
     /* Animations */
     @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.7}}
@@ -494,6 +597,7 @@
         
         <div class="quiz-controls">
           <button id="start-quiz" style="background:linear-gradient(135deg, var(--red), #ff3d3d);padding:12px 30px;font-size:16px">▶️ بدء الاختبار</button>
+          <button id="select-words-quiz" class="ghost">📝 اختيار الكلمات</button>
           <button id="next-question" class="ghost" style="display:none">⏭️ التالي</button>
           <button id="end-quiz" class="ghost" style="display:none">⏹️ إنهاء</button>
           <button id="back-to-exercises-quiz" class="ghost">🔙 العودة</button>
@@ -546,6 +650,7 @@
         
         <div class="quiz-controls">
           <button id="start-writing" style="background:linear-gradient(135deg, var(--red), #ff3d3d);padding:12px 30px;font-size:16px">▶️ بدء التمرين</button>
+          <button id="select-words-writing" class="ghost">📝 اختيار الكلمات</button>
           <button id="check-answer" class="ghost" style="display:none">✓ تحقق</button>
           <button id="next-writing" class="ghost" style="display:none">⏭️ التالي</button>
           <button id="show-answer" class="ghost" style="display:none">👁️ عرض الإجابة</button>
@@ -590,6 +695,7 @@
         
         <div class="memory-controls">
           <button id="start-memory" style="background:linear-gradient(135deg, var(--red), #ff3d3d);padding:12px 30px;font-size:16px">▶️ بدء اللعبة</button>
+          <button id="select-words-memory" class="ghost">📝 اختيار الكلمات</button>
           <button id="restart-memory" class="ghost" style="display:none">🔄 إعادة تشغيل</button>
           <button id="back-to-exercises-memory" class="ghost">🔙 العودة</button>
         </div>
@@ -754,6 +860,37 @@
       </div>
     </div>
 
+    <!-- Word Selection Modal -->
+    <div id="word-selection-modal" class="word-selection-modal hidden">
+      <div class="word-selection-container">
+        <div class="word-selection-header">
+          <h1 id="modal-title" style="color:#ffcccc;margin:0">اختر الكلمات للتمرين</h1>
+          <button id="close-modal" class="ghost" style="font-size:20px;padding:5px 10px">✕</button>
+        </div>
+        
+        <div style="display:flex;gap:15px;margin-bottom:15px;flex-wrap:wrap">
+          <button id="select-all" class="ghost small">✓ تحديد الكل</button>
+          <button id="deselect-all" class="ghost small">✗ إلغاء تحديد الكل</button>
+          <button id="select-last" class="ghost small">📅 تحديد الأخيرة</button>
+          <button id="select-random" class="ghost small">🎲 اختيار عشوائي</button>
+        </div>
+        
+        <div class="word-selection-list" id="word-selection-list">
+          <!-- Words will be inserted here -->
+        </div>
+        
+        <div class="word-selection-controls">
+          <div class="word-selection-stats">
+            تم تحديد <span id="selected-count">0</span> من <span id="total-count">0</span> كلمة
+          </div>
+          <div>
+            <button id="cancel-selection" class="ghost">إلغاء</button>
+            <button id="confirm-selection" style="margin-left:10px">✅ تأكيد الاختيار</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer>German Trainer — ملف HTML واحد يعمل في المتصفح | يدعم الحفظ المحلي والاستيراد والتصدير</footer>
   </div>
 
@@ -765,10 +902,12 @@
     const WORDS_KEY = 'german_trainer_words_v4';
     const SETTINGS_KEY = 'german_trainer_settings';
     const MISTAKES_KEY = 'german_trainer_mistakes';
+    const SELECTED_WORDS_KEY = 'german_trainer_selected_words';
     
     let words = JSON.parse(localStorage.getItem(WORDS_KEY) || '[]');
     let settings = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{"optionsCount":4,"usePron":true,"exerciseLimit":20,"spellingTolerance":true,"autoShowAnswer":false,"mistakesToRemove":2,"themeColor":"#ff0b0b"}');
     let mistakes = JSON.parse(localStorage.getItem(MISTAKES_KEY) || '[]');
+    let selectedWords = JSON.parse(localStorage.getItem(SELECTED_WORDS_KEY) || '[]');
     
     // Game variables
     let quizQueue = [];
@@ -796,6 +935,21 @@
     let mistakesReviewActive = false;
     let currentMistakeIndex = 0;
 
+    // Word selection variables
+    let currentExerciseType = null;
+    let wordSelectionModal = document.getElementById('word-selection-modal');
+    let modalTitle = document.getElementById('modal-title');
+    let wordSelectionList = document.getElementById('word-selection-list');
+    let selectedCountEl = document.getElementById('selected-count');
+    let totalCountEl = document.getElementById('total-count');
+    let selectAllBtn = document.getElementById('select-all');
+    let deselectAllBtn = document.getElementById('deselect-all');
+    let selectLastBtn = document.getElementById('select-last');
+    let selectRandomBtn = document.getElementById('select-random');
+    let cancelSelectionBtn = document.getElementById('cancel-selection');
+    let confirmSelectionBtn = document.getElementById('confirm-selection');
+    let closeModalBtn = document.getElementById('close-modal');
+
     // UI refs
     const germanInput = document.getElementById('german');
     const englishInput = document.getElementById('english');
@@ -812,6 +966,7 @@
     
     // Quiz elements
     const startQuizBtn = document.getElementById('start-quiz');
+    const selectWordsQuizBtn = document.getElementById('select-words-quiz');
     const nextQuizBtn = document.getElementById('next-question');
     const endQuizBtn = document.getElementById('end-quiz');
     const optsCount = document.getElementById('optionsCount');
@@ -831,6 +986,7 @@
     
     // Writing elements
     const startWritingBtn = document.getElementById('start-writing');
+    const selectWordsWritingBtn = document.getElementById('select-words-writing');
     const checkAnswerBtn = document.getElementById('check-answer');
     const nextWritingBtn = document.getElementById('next-writing');
     const showAnswerBtn = document.getElementById('show-answer');
@@ -848,6 +1004,7 @@
     
     // Memory game elements
     const startMemoryBtn = document.getElementById('start-memory');
+    const selectWordsMemoryBtn = document.getElementById('select-words-memory');
     const restartMemoryBtn = document.getElementById('restart-memory');
     const memoryGrid = document.getElementById('memory-grid');
     const memoryMovesEl = document.getElementById('memory-moves');
@@ -954,6 +1111,11 @@
       settings.themeColor = themeColor.value;
       localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
       updateTheme();
+    }
+
+    // Save selected words
+    function saveSelectedWords() {
+      localStorage.setItem(SELECTED_WORDS_KEY, JSON.stringify(selectedWords));
     }
 
     // Save mistakes
@@ -1088,6 +1250,122 @@
       loadMistakeForReview();
     };
 
+    // ===== WORD SELECTION FUNCTIONS =====
+    function openWordSelectionModal(exerciseType) {
+      currentExerciseType = exerciseType;
+      
+      // Set modal title based on exercise type
+      const titles = {
+        'quiz': 'اختر الكلمات لاختبار متعدد',
+        'writing': 'اختر الكلمات لتمرين الكتابة',
+        'memory': 'اختر الكلمات للعبة الذاكرة'
+      };
+      
+      modalTitle.textContent = titles[exerciseType] || 'اختر الكلمات للتمرين';
+      
+      // Render word selection list
+      renderWordSelectionList();
+      
+      // Show modal
+      wordSelectionModal.classList.remove('hidden');
+    }
+
+    function renderWordSelectionList() {
+      wordSelectionList.innerHTML = '';
+      totalCountEl.textContent = words.length;
+      
+      if (words.length === 0) {
+        wordSelectionList.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted)">لا توجد كلمات. أضف كلمات أولاً من صفحة محرر الكلمات.</div>';
+        selectedCountEl.textContent = '0';
+        return;
+      }
+      
+      let selectedCount = 0;
+      
+      words.forEach((word, index) => {
+        const isSelected = selectedWords.some(w => 
+          w.german === word.german && w.english === word.english
+        );
+        
+        if (isSelected) selectedCount++;
+        
+        const item = document.createElement('div');
+        item.className = `word-selection-item ${isSelected ? 'selected' : ''}`;
+        item.innerHTML = `
+          <input type="checkbox" ${isSelected ? 'checked' : ''} data-index="${index}" />
+          <div class="word-selection-text">
+            <div class="word-selection-german">${escapeHtml(word.german)}</div>
+            <div class="word-selection-english">${escapeHtml(word.english)}</div>
+          </div>
+        `;
+        
+        item.addEventListener('click', (e) => {
+          if (e.target.type !== 'checkbox') {
+            const checkbox = item.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+            updateSelection(checkbox);
+          }
+        });
+        
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        checkbox.addEventListener('change', (e) => updateSelection(e.target));
+        
+        wordSelectionList.appendChild(item);
+      });
+      
+      selectedCountEl.textContent = selectedCount;
+    }
+
+    function updateSelection(checkbox) {
+      const index = parseInt(checkbox.dataset.index);
+      const word = words[index];
+      const isChecked = checkbox.checked;
+      
+      if (isChecked) {
+        // Add to selected words if not already there
+        if (!selectedWords.some(w => w.german === word.german && w.english === word.english)) {
+          selectedWords.push({...word});
+        }
+      } else {
+        // Remove from selected words
+        selectedWords = selectedWords.filter(w => 
+          !(w.german === word.german && w.english === word.english)
+        );
+      }
+      
+      // Update UI
+      checkbox.parentElement.classList.toggle('selected', isChecked);
+      selectedCountEl.textContent = selectedWords.length;
+      saveSelectedWords();
+    }
+
+    function closeWordSelectionModal() {
+      wordSelectionModal.classList.add('hidden');
+      currentExerciseType = null;
+    }
+
+    function confirmWordSelection() {
+      if (selectedWords.length < 2) {
+        alert(`تحتاج إلى اختيار ${2 - selectedWords.length} كلمات أخرى على الأقل للبدء`);
+        return;
+      }
+      
+      closeWordSelectionModal();
+      
+      // Start the appropriate exercise
+      switch (currentExerciseType) {
+        case 'quiz':
+          startQuizWithSelectedWords();
+          break;
+        case 'writing':
+          startWritingWithSelectedWords();
+          break;
+        case 'memory':
+          startMemoryWithSelectedWords();
+          break;
+      }
+    }
+
     // ===== MISTAKES REVIEW FUNCTIONS - UPDATED =====
     startMistakesReviewBtn.addEventListener('click', startMistakesReview);
     stopMistakesReviewBtn.addEventListener('click', stopMistakesReview);
@@ -1196,7 +1474,7 @@
         
         // Create options
         const numOpts = Math.max(2, Math.min(6, parseInt(optsCount.value) || 4));
-        const quizWords = words.slice(-parseInt(exerciseLimit.value) || 20);
+        const quizWords = selectedWords.length > 0 ? selectedWords : words.slice(-parseInt(exerciseLimit.value) || 20);
         const choices = buildChoices(currentMistakeReview.correct, numOpts, quizWords);
         
         choices.forEach(c => {
@@ -1362,6 +1640,46 @@
       }
     });
 
+    // ===== WORD SELECTION EVENT HANDLERS =====
+    selectAllBtn.addEventListener('click', () => {
+      selectedWords = [...words];
+      saveSelectedWords();
+      renderWordSelectionList();
+    });
+    
+    deselectAllBtn.addEventListener('click', () => {
+      selectedWords = [];
+      saveSelectedWords();
+      renderWordSelectionList();
+    });
+    
+    selectLastBtn.addEventListener('click', () => {
+      const limit = parseInt(exerciseLimit.value) || 20;
+      const lastWords = words.slice(-limit);
+      selectedWords = [...lastWords];
+      saveSelectedWords();
+      renderWordSelectionList();
+    });
+    
+    selectRandomBtn.addEventListener('click', () => {
+      const limit = parseInt(exerciseLimit.value) || 20;
+      const shuffled = shuffle([...words]);
+      selectedWords = shuffled.slice(0, Math.min(limit, shuffled.length));
+      saveSelectedWords();
+      renderWordSelectionList();
+    });
+    
+    cancelSelectionBtn.addEventListener('click', closeWordSelectionModal);
+    confirmSelectionBtn.addEventListener('click', confirmWordSelection);
+    closeModalBtn.addEventListener('click', closeWordSelectionModal);
+    
+    // Close modal when clicking outside
+    wordSelectionModal.addEventListener('click', (e) => {
+      if (e.target === wordSelectionModal) {
+        closeWordSelectionModal();
+      }
+    });
+
     // Navigation
     navBtns.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1411,6 +1729,11 @@
         document.querySelector(`[data-page="${exercise}"]`).click();
       });
     });
+
+    // Word selection buttons
+    selectWordsQuizBtn.addEventListener('click', () => openWordSelectionModal('quiz'));
+    selectWordsWritingBtn.addEventListener('click', () => openWordSelectionModal('writing'));
+    selectWordsMemoryBtn.addEventListener('click', () => openWordSelectionModal('memory'));
 
     // Back to exercises
     backToExercisesQuizBtn.addEventListener('click', () => {
@@ -1517,7 +1840,9 @@
       if(words.length === 0) return;
       if(confirm(`هل أنت متأكد من حذف جميع الكلمات (${words.length} كلمة)?`)){
         words=[];
+        selectedWords = [];
         persist();
+        saveSelectedWords();
         renderList();
       }
     });
@@ -1598,7 +1923,14 @@
       quizScoreEl.textContent = `${quizCorrect}/${quizAttempts}`;
     }
 
-    startQuizBtn.addEventListener('click', startQuiz);
+    startQuizBtn.addEventListener('click', () => {
+      if (selectedWords.length > 0) {
+        startQuizWithSelectedWords();
+      } else {
+        startQuiz();
+      }
+    });
+    
     nextQuizBtn.addEventListener('click', nextQuizQuestion);
     endQuizBtn.addEventListener('click', endQuiz);
 
@@ -1626,6 +1958,31 @@
       
       // Update UI
       startQuizBtn.style.display = 'none';
+      selectWordsQuizBtn.style.display = 'none';
+      nextQuizBtn.style.display = 'inline-block';
+      endQuizBtn.style.display = 'inline-block';
+      quizMistakesContainer.style.display = 'none';
+      
+      nextQuizQuestion();
+    }
+
+    function startQuizWithSelectedWords() {
+      if(selectedWords.length < 2){ 
+        alert('اختر على الأقل كلمتين لبدء الاختبار');
+        openWordSelectionModal('quiz');
+        return; 
+      }
+      
+      quizActive = true;
+      quizCorrect = 0; 
+      quizAttempts = 0; 
+      quizMistakes = [];
+      
+      quizQueue = shuffle([...selectedWords]);
+      
+      // Update UI
+      startQuizBtn.style.display = 'none';
+      selectWordsQuizBtn.style.display = 'none';
       nextQuizBtn.style.display = 'inline-block';
       endQuizBtn.style.display = 'inline-block';
       quizMistakesContainer.style.display = 'none';
@@ -1643,8 +2000,7 @@
       quizPromptEl.innerHTML = `ما هي الكلمة الألمانية لـ:<br><strong style="color:#ffcccc;font-size:24px;margin-top:10px;display:block">${escapeHtml(currentQuizWord.english)}</strong>`;
       
       const numOpts = Math.max(2, Math.min(6, parseInt(optsCount.value) || 4));
-      const limit = parseInt(exerciseLimit.value) || 20;
-      const quizWords = words.slice(-limit);
+      const quizWords = selectedWords.length > 0 ? selectedWords : words.slice(-parseInt(exerciseLimit.value) || 20);
       const choices = buildChoices(currentQuizWord.german, numOpts, quizWords);
       renderQuizOptions(choices);
       
@@ -1732,6 +2088,7 @@
       quizOptsEl.innerHTML = '';
       
       startQuizBtn.style.display = 'inline-block';
+      selectWordsQuizBtn.style.display = 'inline-block';
       nextQuizBtn.style.display = 'none';
       endQuizBtn.style.display = 'none';
       
@@ -1767,7 +2124,14 @@
       writingScoreEl.textContent = `${writingCorrect}/${writingAttempts}`;
     }
 
-    startWritingBtn.addEventListener('click', startWriting);
+    startWritingBtn.addEventListener('click', () => {
+      if (selectedWords.length > 0) {
+        startWritingWithSelectedWords();
+      } else {
+        startWriting();
+      }
+    });
+    
     checkAnswerBtn.addEventListener('click', checkWritingAnswer);
     nextWritingBtn.addEventListener('click', nextWritingQuestion);
     showAnswerBtn.addEventListener('click', showWritingAnswer);
@@ -1802,6 +2166,35 @@
       
       // Update UI
       startWritingBtn.style.display = 'none';
+      selectWordsWritingBtn.style.display = 'none';
+      checkAnswerBtn.style.display = 'inline-block';
+      nextWritingBtn.style.display = 'none';
+      showAnswerBtn.style.display = 'inline-block';
+      endWritingBtn.style.display = 'inline-block';
+      writingMistakesContainer.style.display = 'none';
+      writingInput.disabled = false;
+      writingInput.focus();
+      
+      nextWritingQuestion();
+    }
+
+    function startWritingWithSelectedWords() {
+      if(selectedWords.length < 2){ 
+        alert('اختر على الأقل كلمتين لبدء تمرين الكتابة');
+        openWordSelectionModal('writing');
+        return; 
+      }
+      
+      writingActive = true;
+      writingCorrect = 0; 
+      writingAttempts = 0; 
+      writingMistakes = [];
+      
+      writingQueue = shuffle([...selectedWords]);
+      
+      // Update UI
+      startWritingBtn.style.display = 'none';
+      selectWordsWritingBtn.style.display = 'none';
       checkAnswerBtn.style.display = 'inline-block';
       nextWritingBtn.style.display = 'none';
       showAnswerBtn.style.display = 'inline-block';
@@ -1958,6 +2351,7 @@
       writingFeedback.className = 'writing-feedback';
       
       startWritingBtn.style.display = 'inline-block';
+      selectWordsWritingBtn.style.display = 'inline-block';
       checkAnswerBtn.style.display = 'none';
       nextWritingBtn.style.display = 'none';
       showAnswerBtn.style.display = 'none';
@@ -1988,7 +2382,14 @@
     }
 
     // ===== MEMORY GAME FUNCTIONS - FIXED FLIP ANIMATION - 16 CARDS (8 DEUTSCH + 8 ENGLISH) & HALF SIZE =====
-    startMemoryBtn.addEventListener('click', startMemoryGame);
+    startMemoryBtn.addEventListener('click', () => {
+      if (selectedWords.length > 0) {
+        startMemoryWithSelectedWords();
+      } else {
+        startMemoryGame();
+      }
+    });
+    
     restartMemoryBtn.addEventListener('click', restartMemoryGame);
     
     function startMemoryGame() {
@@ -2062,6 +2463,7 @@
       
       // Update UI
       startMemoryBtn.style.display = 'none';
+      selectWordsMemoryBtn.style.display = 'none';
       restartMemoryBtn.style.display = 'inline-block';
       memoryComplete.style.display = 'none';
       renderMemoryGrid();
@@ -2069,9 +2471,86 @@
       updateMemoryStats();
     }
     
+    function startMemoryWithSelectedWords() {
+      if(selectedWords.length < 4){ 
+        alert('اختر على الأقل 4 كلمات لبدء لعبة الذاكرة');
+        openWordSelectionModal('memory');
+        return; 
+      }
+      
+      memoryActive = true;
+      memoryMoves = 0;
+      memoryMatched = 0;
+      memoryStartTime = Date.now();
+      flippedCards = [];
+      canFlip = true;
+      
+      // USE SELECTED WORDS (up to 8 for 16 cards)
+      const memoryWords = selectedWords.slice(0, 8);
+      
+      // Create 16 cards (German + English for each word)
+      memoryCards = [];
+      memoryWords.forEach(word => {
+        // Add German card
+        memoryCards.push({
+          id: Date.now() + Math.random(),
+          type: 'german',
+          content: word.german,
+          pairId: word.german + word.english,
+          matched: false
+        });
+        
+        // Add English card
+        memoryCards.push({
+          id: Date.now() + Math.random() + 1,
+          type: 'english',
+          content: word.english,
+          pairId: word.german + word.english,
+          matched: false
+        });
+      });
+      
+      // If we have less than 8 words, we still need 16 cards
+      // So we'll duplicate some words to reach 16 cards
+      while (memoryCards.length < 16 && memoryWords.length > 0) {
+        const word = memoryWords[memoryCards.length % memoryWords.length];
+        
+        memoryCards.push({
+          id: Date.now() + Math.random() + memoryCards.length,
+          type: 'german',
+          content: word.german,
+          pairId: word.german + word.english + '_dup' + memoryCards.length,
+          matched: false
+        });
+        
+        memoryCards.push({
+          id: Date.now() + Math.random() + memoryCards.length + 1,
+          type: 'english',
+          content: word.english,
+          pairId: word.german + word.english + '_dup' + memoryCards.length,
+          matched: false
+        });
+      }
+      
+      memoryCards = shuffle(memoryCards);
+      
+      // Update UI
+      startMemoryBtn.style.display = 'none';
+      selectWordsMemoryBtn.style.display = 'none';
+      restartMemoryBtn.style.display = 'inline-block';
+      memoryComplete.style.display = 'none';
+      renderMemoryGrid(true);
+      startMemoryTimer();
+      updateMemoryStats();
+    }
+    
     function restartMemoryGame() {
       stopMemoryGame();
-      startMemoryGame();
+      if (selectedWords.length > 0) {
+        startMemoryWithSelectedWords();
+      } else {
+        startMemoryGame();
+      }
     }
     
     function stopMemoryGame() {
@@ -2100,7 +2579,7 @@
       memoryMatchedEl.textContent = memoryMatched;
     }
     
-    function renderMemoryGrid() {
+    function renderMemoryGrid(usingSelectedWords = false) {
       memoryGrid.innerHTML = '';
       
       if (memoryCards.length === 0) {
@@ -2108,8 +2587,7 @@
         return;
       }
       
-      // Display message about using recent words
-      const recentWords = words.slice(-8);
+      // Display message
       const messageDiv = document.createElement('div');
       messageDiv.style.gridColumn = '1/-1';
       messageDiv.style.textAlign = 'center';
@@ -2119,7 +2597,15 @@
       messageDiv.style.color = '#ffcccc';
       messageDiv.style.background = 'rgba(255,11,11,0.1)';
       messageDiv.style.borderRadius = '6px';
-      messageDiv.innerHTML = `🎯 <strong>اللعبة تستخدم آخر ${Math.min(8, recentWords.length)} كلمة أضفتها</strong> (16 بطاقة: 8 ألمانية + 8 إنجليزية)`;
+      
+      if (usingSelectedWords) {
+        const wordCount = Math.min(8, selectedWords.length);
+        messageDiv.innerHTML = `🎯 <strong>اللعبة تستخدم ${wordCount} كلمة مختارة</strong> (16 بطاقة: ${wordCount} ألمانية + ${wordCount} إنجليزية)`;
+      } else {
+        const recentWords = words.slice(-8);
+        messageDiv.innerHTML = `🎯 <strong>اللعبة تستخدم آخر ${Math.min(8, recentWords.length)} كلمة أضفتها</strong> (16 بطاقة: ${Math.min(8, recentWords.length)} ألمانية + ${Math.min(8, recentWords.length)} إنجليزية)`;
+      }
+      
       memoryGrid.appendChild(messageDiv);
       
       memoryCards.forEach((card, index) => {
@@ -2226,6 +2712,9 @@
       finalMovesEl.textContent = memoryMoves;
       finalTimeEl.textContent = timeString;
       memoryComplete.style.display = 'block';
+      
+      // Restore selection button
+      selectWordsMemoryBtn.style.display = 'inline-block';
     }
 
     // ===== UTILITY FUNCTIONS =====
@@ -2297,6 +2786,7 @@
         words: words,
         settings: settings,
         mistakes: mistakes,
+        selectedWords: selectedWords,
         version: '4.0',
         exportDate: new Date().toISOString()
       };
@@ -2335,6 +2825,11 @@
       // Enter to check mistake answer
       if(e.key === 'Enter' && document.activeElement === mistakeReviewInput && mistakesReviewActive){
         checkMistakeAnswer();
+      }
+      
+      // Escape to close modal
+      if(e.key === 'Escape' && !wordSelectionModal.classList.contains('hidden')){
+        closeWordSelectionModal();
       }
     });
 
